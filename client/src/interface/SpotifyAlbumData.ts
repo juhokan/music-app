@@ -44,7 +44,7 @@ interface SpotifyAlbumData {
   readonly total_tracks: string
   readonly external_urls: SpotifyLinkObject
   readonly id: string
-  readonly imaged: SpotifyImageObject[]
+  readonly images: SpotifyImageObject[]
   readonly name: string
   readonly release_date: string
   readonly artists: SpotifyArtistObject[]
