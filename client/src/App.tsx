@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './App.css'
 import AlbumData from './interface/AlbumData'
 import albumService from './services/albumService'
-import { UserContext } from './context'
+import { AlbumsContext, UserContext } from './context'
 import LoginForm from './components/LoginForm'
 import UserData from './interface/UserData'
 
@@ -13,13 +13,14 @@ const App: React.FC = () => {
   const [user, setUser] = React.useState<UserData | null>(null)
 
   useEffect(() => {
-    const getAllAlbums = async () => {
-      const a = await albumService.getAlbums()
-      setAlbums(a)
-    }
-    getAllAlbums()
+    fetchAlbums()
     initUser()
   }, [])
+
+  const fetchAlbums = async () => {
+    const a = await albumService.getAlbums()
+    setAlbums(a)
+  }
 
   const initUser = () => {
     const u = window.localStorage.getItem(USER_KEY)
@@ -40,18 +41,20 @@ const App: React.FC = () => {
 
   return (
     <UserContext.Provider value={{user, setUser: setAndSaveUser}}>
-      {user === null ? 
-        (<LoginForm />) 
-        : 
-        (<div>
-          {albums ? (
-            albums.map(album => (
-              <div key={album.album_id}>{album.title}</div>
-            ))
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>)}
+      <AlbumsContext.Provider value={{albums, setAlbums}}>
+        {user === null ? 
+          (<LoginForm />) 
+          : 
+          (<div>
+            {albums ? (
+              albums.map(album => (
+                <div key={album.album_id}>{album.title}</div>
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
+          </div>)}
+      </AlbumsContext.Provider>
     </UserContext.Provider>
   )
 }
