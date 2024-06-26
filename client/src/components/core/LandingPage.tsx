@@ -1,8 +1,9 @@
 import React from 'react'
+import AuthorizeSpotify from '../spotify/AuthorizeSpotify'
 
 const LandingPage: React.FC = () => {
   return (
-    <div>LandingPage</div>
+    <AuthorizeSpotify />
   )
 }
 
