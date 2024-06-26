@@ -7,7 +7,13 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     name: String,
-    passwordHash: String
+    passwordHash: String,
+    albums: [
+      {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Album'
+      }
+  ],
 })
 
 userSchema.set('toJSON', {

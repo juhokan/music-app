@@ -4,7 +4,10 @@ const app = express();
 import * as cors from 'cors';
 import logger from './utils/logger';
 import mongoose from 'mongoose';
+import middleware from './utils/middleware';
 import usersRouter from './controllers/users'
+import albumRouter from './controllers/albums';
+import loginRouter from './controllers/login';
 
 mongoose.set('strictQuery', false);
 
@@ -25,6 +28,14 @@ app.use(cors());
 app.use(express.static('dist'));
 app.use(express.json());
 
+app.use(middleware.tokenExtractor)
+app.use(middleware.requestLogger)
+
+app.use('/api/albums', albumRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/login', loginRouter)
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 export default app;
