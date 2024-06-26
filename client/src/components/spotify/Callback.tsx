@@ -39,7 +39,7 @@ const Callback: React.FC = () => {
   
         try {
           const response = await axios.post(authOptions.url, authOptions.data, { headers: authOptions.headers })
-          
+
           if (response.status === 200) {
             const { access_token, refresh_token } = response.data
             const t: SpotifyToken = {token: access_token, refresh: refresh_token}
@@ -69,9 +69,7 @@ const Callback: React.FC = () => {
   }, [code, state])
 
   return (
-    <div>
-      <h3>Loading...</h3>
-    </div>
+    <div />
   )
 }
 
