@@ -4,13 +4,13 @@ import AlbumData from './interface/AlbumData'
 import albumService from './services/albumService'
 import { UserContext } from './context'
 import LoginForm from './components/LoginForm'
+import UserData from './interface/UserData'
 
-function App() {
+const USER_KEY = 'user'
+
+const App: React.FC = () => {
   const [albums, setAlbums] = React.useState<AlbumData[] | null>(null)
-  const [name, setName] = React.useState<string | null>(null)
-  const [username, setUsername] = React.useState<string | null>(null)
-  const [id, setId] = React.useState<string | null>(null)
-  const [token, setToken] = React.useState<string | null>(null)
+  const [user, setUser] = React.useState<UserData | null>(null)
 
   useEffect(() => {
     const getAllAlbums = async () => {
@@ -18,11 +18,29 @@ function App() {
       setAlbums(a)
     }
     getAllAlbums()
+    initUser()
   }, [])
 
+  const initUser = () => {
+    const u = window.localStorage.getItem(USER_KEY)
+    if (u) {
+      const user = JSON.parse(u)
+      setAndSaveUser(user)
+    }
+  }
+
+  const setAndSaveUser = (u: UserData | null) => {
+    window.localStorage.removeItem(USER_KEY)
+
+    if (u) {
+      window.localStorage.setItem(USER_KEY, JSON.stringify(u))
+      setUser(u)
+    }
+  }
+
   return (
-    <UserContext.Provider value={{name, setName, username, setUsername, id, setId, token, setToken}}>
-      {id === null ? 
+    <UserContext.Provider value={{user, setUser: setAndSaveUser}}>
+      {user === null ? 
         (<LoginForm />) 
         : 
         (<div>

@@ -5,16 +5,16 @@ import { UserContext } from '../context'
 const LoginForm = () => {
   const [loginUsername, setLoginUsername] = React.useState('')
   const [loginPassword, setLoginPassword] = React.useState('')
-  const { setId, setName, setUsername } = React.useContext(UserContext)
+  const { setUser } = React.useContext(UserContext)
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
+
     const newUser = await loginService.login({ username: loginUsername, password: loginPassword })
-    if (newUser) {
-      setUsername(newUser.username)
-      setName(newUser.name)
-      setId(newUser.id)
+    if (newUser?.name && newUser?.username && newUser?.token) {
+      setUser(newUser)
+
     }
     resetForm()
   }
