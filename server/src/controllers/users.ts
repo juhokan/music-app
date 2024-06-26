@@ -5,7 +5,7 @@ import User from '../models/user';
 
 usersRouter.get('/', async (request: any, response: any) => {
   const users = await User
-    .find({})
+    .find({}).populate('albums', { album_id: 1, title: 1, artist: 1, rating: 1, favourite: 1 })
   response.json(users)
 })
 
