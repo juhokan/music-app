@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { SpotifyContext, UserContext } from '../../context'
@@ -38,9 +39,9 @@ const AlbumPage: React.FC = () => {
         album_id: test.id,
         rating: 10,
         title: test.name,
+        image_url: test.images[0].url,
         artist: test.artists[0].name,
-        favourite: false,
-        image_url: test.images[0].url
+        favourite: false
   
       }
 

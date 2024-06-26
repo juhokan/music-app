@@ -1,74 +1,57 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import Carousel from 'react-multi-carousel'
-import "react-multi-carousel/lib/styles.css"
-import { SpotifyContext } from '../../context'
-import SpotifyAlbumData from '../../interface/SpotifyAlbumData'
-import { getAlbum } from '../../services/spotifyService'
-import { TEST_ALBUM_ID } from '../../config'
+import 'react-multi-carousel/lib/styles.css'
 import Album from './Album'
+import { AlbumData } from '../../interface/AlbumData'
 
-const AlbumsCarousel: React.FC = () => {
-  const { tokens } = React.useContext(SpotifyContext)
-  const [test, setTest] = React.useState<SpotifyAlbumData | null>(null)
+interface AlbumCarouselProps {
+  readonly albums: AlbumData[] | null;
+}
 
+const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums }) => {
   useEffect(() => {
-    const fetchTest = async () => {
-      if (tokens?.token) {
-        const t = await getTest()
-        setTest(t)
-      }
-    }
-
-    fetchTest()
-  }, [])
-
-  const getTest = async (): Promise<SpotifyAlbumData | null> => {
-    if (tokens?.token) {
-      const test = await getAlbum(tokens.token, TEST_ALBUM_ID)
-      return test
-    }
-    return null
-  }
+    console.log(albums)
+  }, [albums])
 
   const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3
+      items: 3,
+      partialVisibilityGutter: 30
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 5
+      items: 2,
+      partialVisibilityGutter: 30
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
+      items: 1,
+      partialVisibilityGutter: 30
     }
   }
+
   return (
     <>
-      {test && 
-      <Carousel 
-        responsive={responsive}
-        infinite={true}>
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      </Carousel>}
+      {albums && (
+        <div className='carousel-container'>
+          <Carousel
+            className='album-carousel'
+            partialVisible={true}
+            swipeable={true}
+            draggable={true}
+            responsive={responsive}
+          >
+            {albums.map(a => (
+              <Album key={a.album_id} name={a.title} id={a.album_id} artistName={a.artist} image={a.image_url} />
+            ))}
+          </Carousel>
+        </div>
+      )}
     </>
   )
 }
 
 export default AlbumsCarousel
+

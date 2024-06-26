@@ -1,5 +1,44 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --line-height: 1.5;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  --background-color: #0c0c0c;
+  --text-color: #f8f8ff;
+  --link-color: #4caeff;
+  --link-hover-color: #80ccff;
+  --accent-color: #ff8800;
+  --accent-hover-color: #ffaa33;
+
+  --focus-outline-color: #4caeff;
+  --selection-background-color: #333333;
+  --selection-text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight-normal);
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: var(--font-weight-medium);
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: var(--font-weight-normal);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover-color);
 }

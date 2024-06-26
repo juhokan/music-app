@@ -2,7 +2,7 @@ import axios from 'axios'
 import { CLIENT_ID, CLIENT_SECRET } from '../config'
 import SpotifyAlbumData from '../interface/SpotifyAlbumData'
 
-export const searchAlbums = async (token: string, key: string) => {
+export const searchAlbums = async (token: string, key: string): Promise<SpotifyAlbumData[] | null> => {
   try {
     const {data} = await axios.get("https://api.spotify.com/v1/search", {
       headers: {
@@ -14,7 +14,7 @@ export const searchAlbums = async (token: string, key: string) => {
       }
     })
   
-    return data.albums.items
+    return data.albums.items as SpotifyAlbumData[]
   } catch (error) {
     console.error("Error searching albums:", error)
     throw error
@@ -36,7 +36,7 @@ export const getAlbum = async (token: string, id: string): Promise<SpotifyAlbumD
   }
 }
 
-export const getNewReleases = async (token: string, limit: number) => {
+export const getNewReleases = async (token: string, limit: number): Promise<SpotifyAlbumData[] | null> => {
   try {
     const {data} = await axios.get(`https://api.spotify.com/v1/browse/new-releases`, {
       headers: {
@@ -47,31 +47,32 @@ export const getNewReleases = async (token: string, limit: number) => {
       }
     })
     console.log(data)
-    return data.albums.items
+    return data.albums.items as SpotifyAlbumData[]
   } catch (error) {
     console.error("Error searching new releases:", error)
     throw error
   }
 }
 
-export const getUsersAlbums = async (token: string, limit: number, offset: number) => {
-  try {
-    const {data} = await axios.get(`https://api.spotify.com/v1/me/albums`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      params: {
-        limit: limit,
-        offset: offset
-      }
-    })
-    console.log(data)
-    return data.items
-  } catch (error) {
-    console.error("Error searching new releases:", error)
-    throw error
+export const getUsersAlbums = 
+  async (token: string, limit: number, offset: number): Promise<SpotifyAlbumData[] | null> => {
+    try {
+      const {data} = await axios.get(`https://api.spotify.com/v1/me/albums`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params: {
+          limit: limit,
+          offset: offset
+        }
+      })
+      console.log(data)
+      return data.items as SpotifyAlbumData[]
+    } catch (error) {
+      console.error("Error searching new releases:", error)
+      throw error
+    }
   }
-}
 
 export const createAxiosResponseInterceptor = (refreshToken: string, setToken: (token: string | null) => void) => {
   const interceptor = axios.interceptors.response.use(
