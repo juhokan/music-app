@@ -4,6 +4,7 @@
   "description": "server for music app",
   "main": "src/index.ts",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.7",
     "gts": "^5.3.1",
@@ -13,7 +14,7 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/index.js",
+    "start": "npx tsc && node dist/src/index.js",
     "dev": "nodemon src/index.ts",
     "lint": "gts lint",
     "clean": "gts clean",
@@ -24,6 +25,7 @@
     "posttest": "npm run lint"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2"
   }

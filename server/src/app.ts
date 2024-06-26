@@ -3,7 +3,8 @@ import * as express from 'express';
 const app = express();
 import * as cors from 'cors';
 import logger from './utils/logger';
-import mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import usersRouter from './controllers/users'
 
 mongoose.set('strictQuery', false);
 
@@ -23,5 +24,7 @@ if (config.MONGODB_URI) {
 app.use(cors());
 app.use(express.static('dist'));
 app.use(express.json());
+
+app.use('/api/users', usersRouter)
 
 export default app;
