@@ -1,12 +1,14 @@
 import UserData from "./UserData"
 
-interface AlbumData {
+export interface PostAlbumData {
   readonly album_id: string
   readonly rating: Number | null
   readonly title: string
   readonly artist: string
   readonly favourite: boolean
-  readonly user: UserData
+  readonly image_url: string
 }
 
-export default AlbumData
+export interface AlbumData extends PostAlbumData {
+  readonly user: UserData
+}

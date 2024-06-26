@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './App.css'
-import AlbumData from './interface/AlbumData'
-import albumService from './services/albumService'
+import { AlbumData } from './interface/AlbumData'
+import { getAlbums } from './services/albumService'
 import { AlbumsContext, SpotifyContext, UserContext } from './context'
 import UserData from './interface/UserData'
 import AppContainer from './components/core/AppContainer'
@@ -22,7 +22,7 @@ const App: React.FC = () => {
   }, [])
 
   const fetchAlbums = async () => {
-    const a = await albumService.getAlbums()
+    const a = await getAlbums()
     setAlbums(a)
   }
 
@@ -38,25 +38,30 @@ const App: React.FC = () => {
     const u = window.localStorage.getItem(USER_KEY)
     if (u) {
       const user = JSON.parse(u)
+      console.log('init', user)
       setAndSaveUser(user)
     }
   }
 
   const setAndSaveUser = (u: UserData | null) => {
-    window.localStorage.removeItem(USER_KEY)
-
     if (u) {
       window.localStorage.setItem(USER_KEY, JSON.stringify(u))
       setUser(u)
+    }
+    else {
+      window.localStorage.removeItem(USER_KEY)
     }
   }
 
   const setAndSaveSpotifyTokens = (s: SpotifyToken | null) => {
     window.localStorage.removeItem(SPOTIFY_TOKEN)
-
     if (s) {
       window.localStorage.setItem(SPOTIFY_TOKEN, JSON.stringify(s))
-      setTokens(s)
+      const t: SpotifyToken = {
+        token: s.token,
+        refresh: s.refresh
+      }
+      setTokens(t)
     }
   }
 

@@ -50,21 +50,24 @@ const AlbumsCarousel: React.FC = () => {
     }
   }
   return (
-    <Carousel 
-      responsive={responsive}
-      infinite={true}>
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-      <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
-    </Carousel>
+    <>
+      {test && 
+      <Carousel 
+        responsive={responsive}
+        infinite={true}>
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+        <Album name={test?.name} id={test?.id} artistName={test?.artists[0].name} image={test?.images[0].url} />
+      </Carousel>}
+    </>
   )
 }
 
