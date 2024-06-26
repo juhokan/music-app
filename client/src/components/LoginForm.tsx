@@ -2,7 +2,7 @@ import React from 'react'
 import loginService from '../services/loginService'
 import { UserContext } from '../context'
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
   const [loginUsername, setLoginUsername] = React.useState('')
   const [loginPassword, setLoginPassword] = React.useState('')
   const { setUser } = React.useContext(UserContext)

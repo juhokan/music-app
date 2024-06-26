@@ -3,8 +3,8 @@ import './App.css'
 import AlbumData from './interface/AlbumData'
 import albumService from './services/albumService'
 import { AlbumsContext, UserContext } from './context'
-import LoginForm from './components/LoginForm'
 import UserData from './interface/UserData'
+import AppContainer from './components/core/AppContainer'
 
 const USER_KEY = 'user'
 
@@ -42,18 +42,7 @@ const App: React.FC = () => {
   return (
     <UserContext.Provider value={{user, setUser: setAndSaveUser}}>
       <AlbumsContext.Provider value={{albums, setAlbums}}>
-        {user === null ? 
-          (<LoginForm />) 
-          : 
-          (<div>
-            {albums ? (
-              albums.map(album => (
-                <div key={album.album_id}>{album.title}</div>
-              ))
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>)}
+        <AppContainer />
       </AlbumsContext.Provider>
     </UserContext.Provider>
   )
