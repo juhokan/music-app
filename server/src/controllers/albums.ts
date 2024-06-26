@@ -41,8 +41,16 @@ albumRouter.post('/', async (request: any, response: any, next) => {
       return response.status(401).json({ error: 'user not found' });
     }
 
-    if (!body.album_id || !body.rating) {
-      return response.status(400).json({ error: 'album or rating missing' });
+    if (!body.album_id) {
+      return response.status(400).json({ error: 'album missing' });
+    }
+
+    if (!body.image_url) {
+      return response.status(400).json({ error: 'image missing' });
+    }
+
+    if (body.rating > 10 || body.rating < 0) {
+      return response.status(400).json({ error: 'rating out of bounds' });
     }
 
     const album = new Album({
@@ -98,7 +106,7 @@ albumRouter.delete('/:id', async (request: any, response: any, next) => {
 albumRouter.put('/:id', async (request: any, response: any, next) => {
   const body = request.body
 
-  const updatedBlog = {
+  const updatedAlbum = {
     album_id: body.album_id,
     rating: body.rating,
     title: body.title,
@@ -108,7 +116,7 @@ albumRouter.put('/:id', async (request: any, response: any, next) => {
   }
 
   try {
-    const album = await Album.findByIdAndUpdate(request.params.id, updatedBlog)
+    const album = await Album.findByIdAndUpdate(request.params.id, updatedAlbum)
     response.json(album)
   } catch (exception) {
     next(exception)

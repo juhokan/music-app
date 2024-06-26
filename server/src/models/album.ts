@@ -1,10 +1,19 @@
 import mongoose from 'mongoose';
 
 const albumSchema = new mongoose.Schema({
-  album_id: String,
+  album_id: {
+    type: String,
+    required: true
+},
   rating: Number,
-  title: String,
-  artist: String,
+  title: {
+    type: String,
+    required: true
+},
+  artist: {
+    type: String,
+    required: true
+},
   image_url: String,
   favourite: Boolean,
   user: {
