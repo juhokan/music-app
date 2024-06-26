@@ -1,7 +1,8 @@
 interface UserData {
-  readonly username: string
-  readonly name: string
-  readonly id: string
+  readonly username: string | null
+  readonly name: string | null
+  readonly id: string | null
+  readonly token: string | null
 }
   
 export default UserData
