@@ -58,7 +58,7 @@ albumRouter.post('/', async (request: any, response: any, next) => {
       rating: body.rating,
       title: body.title,
       artist: body.artist,
-      image_url: body.url,
+      image_url: body.image_url,
       favourite: body.favourite,
       user: user._id
     });
@@ -80,9 +80,7 @@ albumRouter.delete('/:id', async (request: any, response: any, next) => {
     const decodedToken = jwt.verify(request.token, secret);
 
     if (!request.token || !decodedToken || typeof decodedToken !== 'object' || !('id' in decodedToken) || !decodedToken.id) {
-      return response.status(401).json({
-        error: 'token missing or invalid'
-      });
+      return response.status(401).json({ error: 'token missing or invalid' });
     }
 
     const album = await Album.findById(request.params.id);
@@ -91,12 +89,23 @@ albumRouter.delete('/:id', async (request: any, response: any, next) => {
       return response.status(404).json({ error: 'Album not found' });
     }
 
-    if (album.user?.toString() === decodedToken.id.toString()) {
-      await album.deleteOne();
-      response.status(204).end();
-    } else {
-      response.status(401).json({ error: 'token invalid' });
+    if (album.user?.toString() !== decodedToken.id.toString()) {
+      return response.status(401).json({ error: 'token invalid' });
     }
+
+    await album.deleteOne();
+
+    const user = await User.findById(decodedToken.id);
+
+    if (!user) {
+      return response.status(404).json({ error: 'User not found' });
+    }
+
+    user.albums = user.albums.filter(albumId => albumId.toString() !== request.params.id);
+
+    await user.save();
+
+    response.status(204).end();
   } catch (error) {
     next(error);
   }
@@ -111,7 +120,7 @@ albumRouter.put('/:id', async (request: any, response: any, next) => {
     rating: body.rating,
     title: body.title,
     artist: body.artist,
-    image_url: body.url,
+    image_url: body.image_url,
     favourite: body.favourite
   }
 
