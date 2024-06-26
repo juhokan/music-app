@@ -19,12 +19,11 @@ albumRouter.get('/', async (request, response) => {
 albumRouter.post('/', async (request: any, response: any, next) => {
   try {
     const body = request.body;
-    let token
+    let token;
 
     if (request.token) {
       token = request.token;
-    }
-    else {
+    } else {
       return response.status(401).json({ error: 'token invalid' });
     }
 
@@ -33,7 +32,6 @@ albumRouter.post('/', async (request: any, response: any, next) => {
     if (!decodedToken || typeof decodedToken !== 'object' || !('id' in decodedToken) || !decodedToken.id) {
       return response.status(401).json({ error: 'token invalid' });
     }
-    
 
     const user = await User.findById(decodedToken.id);
 
@@ -42,15 +40,21 @@ albumRouter.post('/', async (request: any, response: any, next) => {
     }
 
     if (!body.album_id) {
-      return response.status(400).json({ error: 'album missing' });
+      return response.status(400).json({ error: 'album_id missing' });
     }
 
     if (!body.image_url) {
-      return response.status(400).json({ error: 'image missing' });
+      return response.status(400).json({ error: 'image_url missing' });
     }
 
     if (body.rating > 10 || body.rating < 0) {
       return response.status(400).json({ error: 'rating out of bounds' });
+    }
+
+    const existingAlbum = await Album.findOne({ album_id: body.album_id, user: user._id });
+
+    if (existingAlbum) {
+      return response.status(400).json({ error: `Album with album_id ${body.album_id} already exists for this user` });
     }
 
     const album = new Album({
@@ -60,7 +64,7 @@ albumRouter.post('/', async (request: any, response: any, next) => {
       artist: body.artist,
       image_url: body.image_url,
       favourite: body.favourite,
-      user: user._id
+      user: user._id,
     });
 
     const savedAlbum = await album.save();
