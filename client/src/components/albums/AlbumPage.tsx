@@ -22,7 +22,7 @@ const AlbumPage: React.FC = () => {
     }
 
     fetchTest()
-  }, [user])
+  }, [user, tokens])
 
   const getTest = async (): Promise<SpotifyAlbumData | null> => {
     if (tokens?.token && albumId) {

@@ -1,14 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-interface AlbumPageProps {
+interface AlbumProps {
   id: string;
   image: string;
   name: string
   artistName: string
 }
 
-const Album: React.FC<AlbumPageProps> = ({ id, image, name, artistName }) => {
+const Album: React.FC<AlbumProps> = ({ id, image, name, artistName }) => {
   const navigate = useNavigate()
 
   const handleAlbumClick = () => {
