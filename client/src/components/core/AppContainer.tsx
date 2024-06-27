@@ -6,6 +6,7 @@ import LandingPage from './LandingPage'
 import LoginForm from '../LoginForm'
 import Callback from '../spotify/Callback'
 import AlbumPage from '../albums/AlbumPage'
+import SearchPage from './SearchPage'
 
 const AppContainer: React.FC = () => {
   const { user } = React.useContext(UserContext)
@@ -19,6 +20,9 @@ const AppContainer: React.FC = () => {
         </Route>
         <Route path={AppRoute.Callback}>
           <Route index element={<Callback />} />
+        </Route>
+        <Route path={AppRoute.Search}>
+          <Route index element={<SearchPage inputValue={null} />} />
         </Route>
       </Routes>
     </Router>

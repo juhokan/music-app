@@ -5,54 +5,54 @@ import { SpotifyContext, UserContext } from '../../context'
 import SpotifyAlbumData from '../../interface/SpotifyAlbumData'
 import { getAlbum } from '../../services/spotifyService'
 import { postAlbum } from '../../services/albumService'
-import { PostAlbumData } from '../../interface/AlbumData'
+import { transformSpotifyAlbum } from '../../utils/transformer'
 
 const AlbumPage: React.FC = () => {
   const { albumId } = useParams<{ albumId: string }>()
   const { user } = React.useContext(UserContext)
-  const [test, setTest] = React.useState<SpotifyAlbumData | null>(null)
+  const [album, setAlbum] = React.useState<SpotifyAlbumData | null>(null)
   const { tokens } = React.useContext(SpotifyContext)
 
   useEffect(() => {
-    const fetchTest = async () => {
-      console.log(tokens)
+    const fetchAlbum = async () => {
       if (tokens?.token) {
-        const t = await getTest()
-        setTest(t)
+        const t = await getSpotifyAlbum()
+        console.log(t)
+        setAlbum(t)
       }
     }
 
-    fetchTest()
+    fetchAlbum()
   }, [user, tokens])
 
-  const getTest = async (): Promise<SpotifyAlbumData | null> => {
+  const getSpotifyAlbum = async (): Promise<SpotifyAlbumData | null> => {
     if (tokens?.token && albumId) {
-      const test = await getAlbum(tokens.token, albumId)
-      return test
+      const s = await getAlbum(tokens.token, albumId)
+      return s
     }
     return null
   }
 
   const handlePostAlbum = async () => {
-    if (test && user && user.token) {
-      const a: PostAlbumData = {
-        album_id: test.id,
-        rating: 10,
-        title: test.name,
-        image_url: test.images[0].url,
-        artist: test.artists[0].name,
-        favourite: false
-  
-      }
-
+    if (album && user && user.token) {
+      const a = transformSpotifyAlbum(album, null, false)
       await postAlbum(a, user.token)
     }
   }
 
   return (
-    <div>
-      <div>{test?.name}</div>
-      <button onClick={handlePostAlbum}>add album</button>
+    <div className='album-page-container'>
+      <div className='album-page-cover-container'>
+        <img 
+          className='album-page-cover' 
+          src={album?.images[0].url} 
+          alt={`${album?.name} - ${album?.artists[0].name}`} />
+      </div>
+      <div className='album-page-text-container'>
+        <h1 className='album-page-title'>{album?.name}</h1>
+        <h2 className='album-page-artist'>{album?.artists[0].name}</h2>
+      </div>
+      <button onClick={handlePostAlbum} >add album</button>
     </div>
   )
 }
