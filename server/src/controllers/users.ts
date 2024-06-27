@@ -42,7 +42,10 @@ usersRouter.post('/', async (request: any, response: any) => {
   try {
     const savedUser = await user.save();
     response.status(201).json(savedUser);
-  } catch (error) {
+  } catch (error: any) {
+    if (error.code === 11000) {
+      return response.status(400).json({error: 'username must be unique'});
+    }
     response.status(500).json({error: 'something went wrong'});
   }
 });
