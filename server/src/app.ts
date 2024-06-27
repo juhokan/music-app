@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import config from './utils/config';
 import * as express from 'express';
 const app = express();
@@ -5,9 +6,10 @@ import * as cors from 'cors';
 import logger from './utils/logger';
 import mongoose from 'mongoose';
 import middleware from './utils/middleware';
-import usersRouter from './controllers/users'
+import usersRouter from './controllers/users';
 import albumRouter from './controllers/albums';
 import loginRouter from './controllers/login';
+import testingRouter from './controllers/testing';
 
 mongoose.set('strictQuery', false);
 
@@ -28,14 +30,18 @@ app.use(cors());
 app.use(express.static('dist'));
 app.use(express.json());
 
-app.use(middleware.tokenExtractor)
-app.use(middleware.requestLogger)
+app.use(middleware.tokenExtractor);
+app.use(middleware.requestLogger);
 
-app.use('/api/albums', albumRouter)
-app.use('/api/users', usersRouter)
-app.use('/api/login', loginRouter)
+app.use('/api/albums', albumRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/login', loginRouter);
 
-app.use(middleware.unknownEndpoint)
-app.use(middleware.errorHandler)
+if (process.env.NODE_ENV === 'test') {
+  app.use('/api/testing', testingRouter);
+}
+
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
 
 export default app;

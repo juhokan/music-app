@@ -1,23 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as bcrypt from 'bcrypt';
 import * as express from 'express';
-const usersRouter = express.Router()
+const usersRouter = express.Router();
 import User from '../models/user';
 
 usersRouter.get('/', async (request: any, response: any) => {
-  const users = await User
-    .find({}).populate('albums', { album_id: 1, title: 1, artist: 1, rating: 1, favourite: 1 })
-  response.json(users)
-})
+  const users = await User.find({}).populate('albums', {
+    album_id: 1,
+    title: 1,
+    artist: 1,
+    rating: 1,
+    favourite: 1,
+  });
+  response.json(users);
+});
 
 usersRouter.post('/', async (request: any, response: any) => {
-  const { username, name, password } = request.body;
+  const {username, name, password} = request.body;
 
   if (!username || username.length < 3) {
-    return response.status(400).json({ error: 'username must be at least 3 characters long' });
+    return response
+      .status(400)
+      .json({error: 'username must be at least 3 characters long'});
   }
 
   if (!password || password.length < 3) {
-    return response.status(400).json({ error: 'password must be at least 3 characters long' });
+    return response
+      .status(400)
+      .json({error: 'password must be at least 3 characters long'});
   }
 
   const saltRounds = 10;
@@ -33,8 +43,8 @@ usersRouter.post('/', async (request: any, response: any) => {
     const savedUser = await user.save();
     response.status(201).json(savedUser);
   } catch (error) {
-    response.status(500).json({ error: 'something went wrong' });
+    response.status(500).json({error: 'something went wrong'});
   }
 });
 
-export default usersRouter
+export default usersRouter;

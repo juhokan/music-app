@@ -1,4 +1,3 @@
 {
-  "extends": "./node_modules/gts/",
-  "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
+  "extends": "./node_modules/gts/"
 }
