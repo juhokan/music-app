@@ -1,11 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState, useEffect } from "react"
 import { SpotifyContext } from "../../context"
 import { searchAlbums } from "../../services/spotifyService"
-import Album from "../albums/Album"
 import SpotifyAlbumData from "../../interface/SpotifyAlbumData"
+import AlbumGrid from "../albums/AlbumGrid"
+import { AlbumData } from "../../interface/AlbumData"
+import { transformSpotifyAlbum } from "../../utils/transformer"
+import UserData from "../../interface/UserData"
 
 interface AlbumSearchProps {
   readonly inputValue: string | null
+}
+
+const NullUser: UserData = {
+  username: null,
+  name: null,
+  token: null
 }
 
 const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
@@ -40,6 +50,14 @@ const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
     event.preventDefault()
     fetchAlbums(pageInput)
   }
+
+  const transformAlbumData = () => {
+    if (albums) {
+      const a: AlbumData[] = albums.map(a => transformSpotifyAlbum(a, null, false, NullUser)) 
+      return a
+    }
+    return null
+  }
   
 
   return (
@@ -49,14 +67,7 @@ const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
       </form>
 
       <div className='album-card-page-container'> 
-        {albums && albums.map(album => (
-          <Album 
-            key={album.id} 
-            id={album.id} 
-            image={album.images[0].url} 
-            name={album.name} 
-            artistName={album.artists[0].name}/>
-        ))}
+        {albums && <AlbumGrid albums={transformAlbumData()}/>}
       </div>
     </div>
   )

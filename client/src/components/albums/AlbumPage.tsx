@@ -5,7 +5,7 @@ import { SpotifyContext, UserContext } from '../../context'
 import SpotifyAlbumData from '../../interface/SpotifyAlbumData'
 import { getAlbum } from '../../services/spotifyService'
 import { postAlbum } from '../../services/albumService'
-import { transformSpotifyAlbum } from '../../utils/transformer'
+import { transformSpotifyPostAlbum } from '../../utils/transformer'
 
 const AlbumPage: React.FC = () => {
   const { albumId } = useParams<{ albumId: string }>()
@@ -35,7 +35,7 @@ const AlbumPage: React.FC = () => {
 
   const handlePostAlbum = async () => {
     if (album && user && user.token) {
-      const a = transformSpotifyAlbum(album, null, false)
+      const a = transformSpotifyPostAlbum(album, null, false)
       await postAlbum(a, user.token)
     }
   }
