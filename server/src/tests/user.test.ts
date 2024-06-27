@@ -14,9 +14,6 @@ describe('when there is initially no users at db', () => {
   });
 
   test('creation succeeds with a fresh username', async () => {
-    const usersAtStart = await helper.usersInDb();
-    console.log(usersAtStart);
-
     const newUser = {
       username: 'test',
       name: 'Test User',
