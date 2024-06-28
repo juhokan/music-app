@@ -2,6 +2,7 @@ import axios from 'axios'
 import { CLIENT_ID, CLIENT_SECRET } from '../config'
 import SpotifyAlbumData from '../interface/SpotifyAlbumData'
 import SpotifyToken from '../interface/SpotifyToken'
+import { SpotifyUserData } from '../interface/SpotifyUserData'
 
 export const searchAlbums = async (token: string, key: string): Promise<SpotifyAlbumData[] | null> => {
   try {
@@ -102,6 +103,20 @@ export const refreshSpotifyToken = async (refresh: string): Promise<SpotifyToken
       return t
     }
     return null
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
+
+export const getProfile = async (token: string): Promise<SpotifyUserData | null> => {
+  try {
+    const { data } = await axios.get<SpotifyUserData>(`https://api.spotify.com/v1/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    return data
   } catch (error) {
     console.error(error)
     return null

@@ -1,11 +1,7 @@
+import { SpotifyImageObject } from "./SpotifyWrappers"
+
 interface SpotifyLinkObject {
   readonly spotify: string
-}
-
-interface SpotifyImageObject {
-  readonly url: string
-  readonly height: number
-  readonly width: number
 }
 
 interface SpotifyArtistObject {
