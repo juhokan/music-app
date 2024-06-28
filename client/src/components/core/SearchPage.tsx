@@ -6,16 +6,9 @@ import SpotifyAlbumData from "../../interface/SpotifyAlbumData"
 import AlbumGrid from "../albums/AlbumGrid"
 import { AlbumData } from "../../interface/AlbumData"
 import { transformSpotifyAlbum } from "../../utils/transformer"
-import UserData from "../../interface/UserData"
 
 interface AlbumSearchProps {
   readonly inputValue: string | null
-}
-
-const NullUser: UserData = {
-  username: null,
-  name: null,
-  token: null
 }
 
 const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
@@ -53,7 +46,7 @@ const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
 
   const transformAlbumData = () => {
     if (albums) {
-      const a: AlbumData[] = albums.map(a => transformSpotifyAlbum(a, null, false, NullUser)) 
+      const a: AlbumData[] = albums.map(a => transformSpotifyAlbum(a, null, false)) 
       return a
     }
     return null

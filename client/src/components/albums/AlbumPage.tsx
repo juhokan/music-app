@@ -1,29 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { SpotifyContext, UserContext } from '../../context'
+import { AlbumsContext, SpotifyContext, UserContext } from '../../context'
 import SpotifyAlbumData from '../../interface/SpotifyAlbumData'
 import { getAlbum } from '../../services/spotifyService'
 import { postAlbum } from '../../services/albumService'
-import { transformSpotifyPostAlbum } from '../../utils/transformer'
+import { transformSpotifyAlbum } from '../../utils/transformer'
+import { UserAlbumData } from '../../interface/AlbumData'
 
 const AlbumPage: React.FC = () => {
+  const { albums } = React.useContext(AlbumsContext)
   const { albumId } = useParams<{ albumId: string }>()
   const { user } = React.useContext(UserContext)
   const [album, setAlbum] = React.useState<SpotifyAlbumData | null>(null)
   const { tokens } = React.useContext(SpotifyContext)
+  const [current, setCurrent] = React.useState<UserAlbumData | null>(null)
 
   useEffect(() => {
     const fetchAlbum = async () => {
       if (tokens?.token) {
         const t = await getSpotifyAlbum()
-        console.log(t)
         setAlbum(t)
       }
     }
-
     fetchAlbum()
+    
   }, [user, tokens])
+
+  useEffect(() => {
+    if (user && albums) {
+      checkCurrent()
+    }
+  }, [album])
 
   const getSpotifyAlbum = async (): Promise<SpotifyAlbumData | null> => {
     if (tokens?.token && albumId) {
@@ -35,9 +43,18 @@ const AlbumPage: React.FC = () => {
 
   const handlePostAlbum = async () => {
     if (album && user && user.token) {
-      const a = transformSpotifyPostAlbum(album, null, false)
+      const a = transformSpotifyAlbum(album, null, false)
       await postAlbum(a, user.token)
     }
+  }
+
+  const checkCurrent = () => {
+    albums?.map(a => {
+      if (a.album_id === album?.id && user?.username === a.user.username) {
+        setCurrent(a)
+        return
+      }
+    })
   }
 
   return (
@@ -52,6 +69,7 @@ const AlbumPage: React.FC = () => {
         <h1 className='album-page-title'>{album?.name}</h1>
         <h2 className='album-page-artist'>{album?.artists[0].name}</h2>
       </div>
+      {current && <div>added</div>}
       <button onClick={handlePostAlbum} >add album</button>
     </div>
   )

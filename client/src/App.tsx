@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import './App.css'
-import { AlbumData } from './interface/AlbumData'
+import { UserAlbumData } from './interface/AlbumData'
 import { getAlbums } from './services/albumService'
 import { AlbumsContext, SpotifyContext, UserContext } from './context'
 import UserData from './interface/UserData'
@@ -13,7 +13,7 @@ const USER_KEY = 'user'
 const SPOTIFY_TOKEN = 'spotify'
 
 const App: React.FC = () => {
-  const [albums, setAlbums] = React.useState<AlbumData[] | null>(null)
+  const [albums, setAlbums] = React.useState<UserAlbumData[] | null>(null)
   const [user, setUser] = React.useState<UserData | null>(null)
   const [tokens, setTokens] = React.useState<SpotifyToken | null>(null)
 
@@ -40,7 +40,6 @@ const App: React.FC = () => {
     const u = window.localStorage.getItem(USER_KEY)
     if (u) {
       const user = JSON.parse(u)
-      console.log('init', user)
       setAndSaveUser(user)
     }
   }

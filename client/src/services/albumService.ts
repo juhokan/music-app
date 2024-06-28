@@ -1,18 +1,18 @@
 import axios from 'axios'
-import { PostAlbumData, AlbumData } from '../interface/AlbumData'
+import { AlbumData, UserAlbumData } from '../interface/AlbumData'
 const url = '/api/albums'
 
-export const getAlbums = async (): Promise<AlbumData[] | null> => {
+export const getAlbums = async (): Promise<UserAlbumData[] | null> => {
   try {
     const response = await axios.get(url)
-    return response.data as AlbumData[]
+    return response.data as UserAlbumData[]
   } catch (error) {
     console.error(error)
     return null
   }
 }
 
-export const postAlbum = async (album: PostAlbumData, token: string): Promise<AlbumData | null> => {
+export const postAlbum = async (album: AlbumData, token: string): Promise<AlbumData | null> => {
   try {
     const data = JSON.stringify(album)
     const response = await axios.post(url, data, {
@@ -28,7 +28,7 @@ export const postAlbum = async (album: PostAlbumData, token: string): Promise<Al
   }
 }
 
-export const putAlbum = async (album: PostAlbumData, token: string, id: string): Promise<AlbumData | null> => {
+export const putAlbum = async (album: AlbumData, token: string, id: string): Promise<AlbumData | null> => {
   try {
     const data = JSON.stringify(album)
     const response = await axios.put(`${url}/${id}`, data, {

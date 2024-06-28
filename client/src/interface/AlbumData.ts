@@ -1,6 +1,6 @@
 import UserData from "./UserData"
 
-export interface PostAlbumData {
+export interface AlbumData {
   readonly album_id: string
   readonly rating: Number | null
   readonly title: string
@@ -9,6 +9,6 @@ export interface PostAlbumData {
   readonly image_url: string
 }
 
-export interface AlbumData extends PostAlbumData {
+export interface UserAlbumData extends AlbumData {
   readonly user: UserData
 }

@@ -29,7 +29,6 @@ export const getAlbum = async (token: string, id: string): Promise<SpotifyAlbumD
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(data)
     return data
   } catch (error) {
     console.error(error)
@@ -47,7 +46,6 @@ export const getNewReleases = async (token: string, limit: number): Promise<Spot
         limit: limit
       }
     })
-    console.log(data)
     return data.albums.items as SpotifyAlbumData[]
   } catch (error) {
     console.error("Error searching new releases:", error)
@@ -67,7 +65,6 @@ export const getUsersAlbums =
           offset: offset
         }
       })
-      console.log(data)
       return data.items as SpotifyAlbumData[]
     } catch (error) {
       console.error("Error searching new releases:", error)
@@ -77,7 +74,6 @@ export const getUsersAlbums =
 
 export const refreshSpotifyToken = async (refresh: string): Promise<SpotifyToken | null> => {
   const authHeader = `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`
-  console.log('Authorization Header:', authHeader)
   
   const authData = new URLSearchParams({
     grant_type: 'refresh_token',

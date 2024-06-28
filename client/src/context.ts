@@ -1,7 +1,7 @@
 import React from "react"
 import UserData from "./interface/UserData"
-import AlbumData from "./interface/AlbumData"
 import SpotifyToken from "./interface/SpotifyToken"
+import { UserAlbumData } from "./interface/AlbumData"
 
 interface UserCtx {
   readonly user: UserData | null
@@ -9,8 +9,8 @@ interface UserCtx {
 }
 
 interface AlbumsCtx {
-  readonly albums: AlbumData[] | null
-  readonly setAlbums: (albums: AlbumData[] | null) => void
+  readonly albums: UserAlbumData[] | null
+  readonly setAlbums: (albums: UserAlbumData[] | null) => void
 }
 
 interface SpotifyCtx {
