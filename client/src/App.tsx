@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import './App.css'
 import { UserAlbumData } from './interface/AlbumData'
 import { getAlbums } from './services/albumService'
-import { AlbumsContext, SpotifyContext, UserContext } from './context'
+import { AlbumsContext, SearchContext, SpotifyContext, UserContext } from './context'
 import UserData from './interface/UserData'
 import AppContainer from './components/core/AppContainer'
 import SpotifyToken from './interface/SpotifyToken'
@@ -16,6 +16,7 @@ const App: React.FC = () => {
   const [albums, setAlbums] = React.useState<UserAlbumData[] | null>(null)
   const [user, setUser] = React.useState<UserData | null>(null)
   const [tokens, setTokens] = React.useState<SpotifyToken | null>(null)
+  const [input, setInput] = React.useState<string | null>(null)
 
   useEffect(() => {
     fetchAlbums()
@@ -67,7 +68,9 @@ const App: React.FC = () => {
     <UserContext.Provider value={{user, setUser: setAndSaveUser}}>
       <SpotifyContext.Provider value={{tokens, setTokens: setAndSaveSpotifyTokens}}>
         <AlbumsContext.Provider value={{albums, setAlbums}}>
-          <AppContainer />
+          <SearchContext.Provider value={{input, setInput}}>
+            <AppContainer />
+          </SearchContext.Provider>
         </AlbumsContext.Provider>
       </SpotifyContext.Provider>
     </UserContext.Provider>

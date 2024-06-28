@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { SpotifyContext } from "../../context"
 import { searchAlbums } from "../../services/spotifyService"
 import SpotifyAlbumData from "../../interface/SpotifyAlbumData"
@@ -12,11 +12,12 @@ interface AlbumSearchProps {
 }
 
 const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
-  const { tokens } = useContext(SpotifyContext)
-  const [albums, setAlbums] = useState<SpotifyAlbumData[] | null>(null)
-  const [pageInput, setPageInput] = useState('')
+  const { tokens } = React.useContext(SpotifyContext)
+  const [albums, setAlbums] = React.useState<SpotifyAlbumData[] | null>(null)
+  const [pageInput, setPageInput] = React.useState('')
 
   useEffect(() => {
+
     if (inputValue) {
       setPageInput(inputValue)
       fetchAlbums(inputValue)

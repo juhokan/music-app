@@ -18,6 +18,11 @@ interface SpotifyCtx {
   readonly setTokens: (tokens: SpotifyToken | null) => void
 }
 
+interface SearchCtx {
+  readonly input: string | null
+  readonly setInput: (input: string | null) => void
+}
+
 export const UserContext = React.createContext<UserCtx>({
   user: null,
   setUser: _ => { /* NOP */ } // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -31,4 +36,9 @@ export const AlbumsContext = React.createContext<AlbumsCtx>({
 export const SpotifyContext = React.createContext<SpotifyCtx>({
   tokens: null,
   setTokens: _ => { /* NOP */ } // eslint-disable-line @typescript-eslint/no-unused-vars
+})
+
+export const SearchContext = React.createContext<SearchCtx>({
+  input: null,
+  setInput: _ => { /* NOP */ } // eslint-disable-line @typescript-eslint/no-unused-vars
 })

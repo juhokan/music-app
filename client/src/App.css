@@ -130,3 +130,42 @@
     }
   }
 }
+
+.menubar {
+  display: flex;
+  align-items: center;
+  width: 100% !important;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  z-index: 9999;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.menubar-image {
+  margin: 0 auto;
+}
+
+.menubar-profile-link {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-mobile {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menubar-link-container {
+  position: absolute;
+  align-items: center;
+  display: flex;
+  margin-right: auto;
+  top: auto;
+  right: 0;
+}

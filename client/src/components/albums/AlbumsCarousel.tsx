@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import Album from './Album'
@@ -13,11 +13,6 @@ interface AlbumCarouselProps {
 }
 
 const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums, header, route }) => {
-
-  useEffect(() => {
-    console.log(albums)
-  }, [albums])
-
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
