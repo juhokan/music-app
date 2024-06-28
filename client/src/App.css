@@ -169,3 +169,49 @@
   top: auto;
   right: 0;
 }
+
+.track-container {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  min-height: 32px;
+  padding-block: 8px;
+}
+
+.track-name {
+  color: var(--text-color);
+  font-weight: 500;
+  padding-right: 8px;
+  margin: 0;
+}
+
+.track-duration {
+  margin: 0;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+}
+
+.track-play-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 8px;
+  padding-top: 10px;
+  & :hover > * {
+    color: var(--secondary-text-color);
+  }
+}
+
+.track-progress-container {
+  width: 100px;
+  height: 4px;
+  background-color: #333;
+  overflow: hidden;
+}
+
+.track-progress {
+  height: 100%;
+  background-color: white;
+}

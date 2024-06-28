@@ -23,6 +23,13 @@ interface SearchCtx {
   readonly setInput: (input: string | null) => void
 }
 
+interface AudioCtx {
+  readonly audio: HTMLAudioElement | null
+  readonly setAudio: (audio: HTMLAudioElement | null) => void
+  readonly id: string | null
+  readonly setId: (id: string | null) => void
+}
+
 export const UserContext = React.createContext<UserCtx>({
   user: null,
   setUser: _ => { /* NOP */ } // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -42,3 +49,11 @@ export const SearchContext = React.createContext<SearchCtx>({
   input: null,
   setInput: _ => { /* NOP */ } // eslint-disable-line @typescript-eslint/no-unused-vars
 })
+
+export const AudioContext = React.createContext<AudioCtx>({
+  audio: null,
+  setAudio: _ => { /* NOP */ }, // eslint-disable-line @typescript-eslint/no-unused-vars
+  id: null,
+  setId: _ => { /* NOP */ } // eslint-disable-line @typescript-eslint/no-unused-vars
+})
+

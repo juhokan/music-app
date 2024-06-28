@@ -1,39 +1,11 @@
-import { SpotifyImageObject } from "./SpotifyWrappers"
+import {
+  SpotifyArtistObject,
+  SpotifyCopyrightObject,
+  SpotifyImageObject,
+  SpotifyLinkObject,
+  SpotifyTracklistObject
+} from "./SpotifyWrappers"
 
-interface SpotifyLinkObject {
-  readonly spotify: string
-}
-
-interface SpotifyArtistObject {
-  readonly external_urls: SpotifyLinkObject
-  readonly id: string
-  readonly name: string
-}
-
-interface SpotifyCopyrightObject {
-  readonly text: string
-  readonly type: string
-}
-
-interface SpotifyTracklistObject {
-  readonly limit: number
-  readonly next: string
-  readonly offset: number
-  readonly previous: string
-  readonly total: number
-  readonly items: SpotifyTrackObject[]
-}
-
-interface SpotifyTrackObject {
-  readonly artists: SpotifyArtistObject[]
-  readonly disc_number: number
-  readonly duration_ms: number
-  readonly external_urls: SpotifyLinkObject
-  readonly id: string
-  readonly name: string
-  readonly preview_url: string | null
-  readonly track_number: number
-}
 
 interface SpotifyAlbumData {
   readonly album_tpe: string

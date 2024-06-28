@@ -7,6 +7,7 @@ import { getAlbum } from '../../services/spotifyService'
 import { deleteAlbum, getAlbums, postAlbum } from '../../services/albumService'
 import { transformSpotifyAlbum } from '../../utils/transformer'
 import { UserAlbumData } from '../../interface/AlbumData'
+import Tracklist from '../tracks/Tracklist'
 
 const AlbumPage: React.FC = () => {
   const { albums, setAlbums } = React.useContext(AlbumsContext)
@@ -78,6 +79,7 @@ const AlbumPage: React.FC = () => {
         <h1 className='album-page-title'>{album?.name}</h1>
         <h2 className='album-page-artist'>{album?.artists[0].name}</h2>
       </div>
+      {album?.tracks && <Tracklist tracklist={album?.tracks}/>}
       {current && <div>added</div>}
       <button onClick={handlePostAlbum} >add album</button>
       {current && <button onClick={handleDeleteAlbum} >remove album</button>}

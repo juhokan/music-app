@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import AlbumsCarousel from '../albums/AlbumsCarousel'
 import { AlbumsContext, SpotifyContext } from '../../context'

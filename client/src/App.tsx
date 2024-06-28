@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import './App.css'
 import { UserAlbumData } from './interface/AlbumData'
 import { getAlbums } from './services/albumService'
-import { AlbumsContext, SearchContext, SpotifyContext, UserContext } from './context'
+import { AlbumsContext, SearchContext, SpotifyContext, UserContext, AudioContext } from './context'
 import UserData from './interface/UserData'
 import AppContainer from './components/core/AppContainer'
 import SpotifyToken from './interface/SpotifyToken'
@@ -14,6 +14,8 @@ const SPOTIFY_TOKEN = 'spotify'
 
 const App: React.FC = () => {
   const [albums, setAlbums] = React.useState<UserAlbumData[] | null>(null)
+  const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null)
+  const [id, setId] = React.useState<string | null>(null)
   const [user, setUser] = React.useState<UserData | null>(null)
   const [tokens, setTokens] = React.useState<SpotifyToken | null>(null)
   const [input, setInput] = React.useState<string | null>(null)
@@ -69,7 +71,9 @@ const App: React.FC = () => {
       <SpotifyContext.Provider value={{tokens, setTokens: setAndSaveSpotifyTokens}}>
         <AlbumsContext.Provider value={{albums, setAlbums}}>
           <SearchContext.Provider value={{input, setInput}}>
-            <AppContainer />
+            <AudioContext.Provider value={{audio, setAudio, id, setId}}>
+              <AppContainer />
+            </AudioContext.Provider>
           </SearchContext.Provider>
         </AlbumsContext.Provider>
       </SpotifyContext.Provider>
