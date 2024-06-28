@@ -7,6 +7,7 @@ import { AlbumsContext, SpotifyContext, UserContext } from './context'
 import UserData from './interface/UserData'
 import AppContainer from './components/core/AppContainer'
 import SpotifyToken from './interface/SpotifyToken'
+import { refreshSpotifyToken } from './services/spotifyService'
 
 const USER_KEY = 'user'
 const SPOTIFY_TOKEN = 'spotify'
@@ -54,14 +55,11 @@ const App: React.FC = () => {
     }
   }
 
-  const setAndSaveSpotifyTokens = (s: SpotifyToken | null) => {
+  const setAndSaveSpotifyTokens = async (s: SpotifyToken | null) => {
     window.localStorage.removeItem(SPOTIFY_TOKEN)
-    if (s) {
-      window.localStorage.setItem(SPOTIFY_TOKEN, JSON.stringify(s))
-      const t: SpotifyToken = {
-        token: s.token,
-        refresh: s.refresh
-      }
+    if (s && s.refresh) {
+      const t = await refreshSpotifyToken(s.refresh)
+      window.localStorage.setItem(SPOTIFY_TOKEN, JSON.stringify(t))
       setTokens(t)
     }
   }
