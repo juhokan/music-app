@@ -46,7 +46,7 @@ export const putAlbum = async (album: AlbumData, token: string, id: string): Pro
 
 export const deleteAlbum = async (token: string, id: string) => {
   try {
-    const response = await axios.put(`${url}/${id}`, {
+    const response = await axios.delete(`${url}/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`

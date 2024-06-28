@@ -1,9 +1,9 @@
 import React from 'react'
-import { AlbumData } from '../../interface/AlbumData'
+import { AlbumData, UserAlbumData } from '../../interface/AlbumData'
 import Album from './Album'
 
 interface AlbumGridProps {
-  readonly albums: AlbumData[] | null
+  readonly albums: AlbumData[] | UserAlbumData[] | null
 }
 
 const AlbumGrid: React.FC<AlbumGridProps> = ({ albums }) => {

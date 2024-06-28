@@ -11,4 +11,5 @@ export interface AlbumData {
 
 export interface UserAlbumData extends AlbumData {
   readonly user: UserData
+  readonly id: string
 }

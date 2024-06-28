@@ -1,5 +1,6 @@
 export enum AppRoute {
   Home = '/',
   Callback = '/callback',
-  Search = 'Search'
+  Search = '/search',
+  Recent = '/recent'
 }

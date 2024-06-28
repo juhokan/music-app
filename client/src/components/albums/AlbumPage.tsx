@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom'
 import { AlbumsContext, SpotifyContext, UserContext } from '../../context'
 import SpotifyAlbumData from '../../interface/SpotifyAlbumData'
 import { getAlbum } from '../../services/spotifyService'
-import { postAlbum } from '../../services/albumService'
+import { deleteAlbum, getAlbums, postAlbum } from '../../services/albumService'
 import { transformSpotifyAlbum } from '../../utils/transformer'
 import { UserAlbumData } from '../../interface/AlbumData'
 
 const AlbumPage: React.FC = () => {
-  const { albums } = React.useContext(AlbumsContext)
+  const { albums, setAlbums } = React.useContext(AlbumsContext)
   const { albumId } = useParams<{ albumId: string }>()
   const { user } = React.useContext(UserContext)
   const [album, setAlbum] = React.useState<SpotifyAlbumData | null>(null)
@@ -31,7 +31,7 @@ const AlbumPage: React.FC = () => {
     if (user && albums) {
       checkCurrent()
     }
-  }, [album])
+  }, [album, albums])
 
   const getSpotifyAlbum = async (): Promise<SpotifyAlbumData | null> => {
     if (tokens?.token && albumId) {
@@ -45,16 +45,25 @@ const AlbumPage: React.FC = () => {
     if (album && user && user.token) {
       const a = transformSpotifyAlbum(album, null, false)
       await postAlbum(a, user.token)
+      fetchUserAlbums()
+    }
+  }
+
+  const handleDeleteAlbum = async () => {
+    if (album && user && user.token && current) {
+      await deleteAlbum(user.token, current.id)
+      fetchUserAlbums()
     }
   }
 
   const checkCurrent = () => {
-    albums?.map(a => {
-      if (a.album_id === album?.id && user?.username === a.user.username) {
-        setCurrent(a)
-        return
-      }
-    })
+    const currentAlbum = albums?.find(a => a.album_id === album?.id && user?.username === a.user.username)
+    setCurrent(currentAlbum || null)
+  }
+
+  const fetchUserAlbums = async () => {
+    const n = await getAlbums()
+    setAlbums(n)
   }
 
   return (
@@ -71,6 +80,7 @@ const AlbumPage: React.FC = () => {
       </div>
       {current && <div>added</div>}
       <button onClick={handlePostAlbum} >add album</button>
+      {current && <button onClick={handleDeleteAlbum} >remove album</button>}
     </div>
   )
 }

@@ -2,13 +2,18 @@ import React, { useEffect } from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import Album from './Album'
-import { AlbumData } from '../../interface/AlbumData'
+import { AlbumData, UserAlbumData } from '../../interface/AlbumData'
+import { AppRoute } from '../../routes'
+import HeaderLink from '../core/HeaderLink'
 
 interface AlbumCarouselProps {
-  readonly albums: AlbumData[] | null;
+  readonly albums: AlbumData[] | UserAlbumData[] | null;
+  readonly header: string
+  readonly route: AppRoute
 }
 
-const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums }) => {
+const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums, header, route }) => {
+
   useEffect(() => {
     console.log(albums)
   }, [albums])
@@ -31,10 +36,12 @@ const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums }) => {
     }
   }
 
+
   return (
     <>
       {albums && (
         <div className='carousel-container'>
+          <HeaderLink header={header} route={route}/>
           <Carousel
             className='album-carousel'
             partialVisible={true}

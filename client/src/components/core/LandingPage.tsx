@@ -7,12 +7,13 @@ import { AppRoute } from '../../routes'
 const LandingPage: React.FC = () => {
 
   const { albums } = React.useContext(AlbumsContext)
+  const newest = albums ? [...albums].reverse() : null
  
   return (
     <>
       <AuthorizeSpotify />
       <a href={AppRoute.Search}>Search</a>
-      <AlbumsCarousel albums={albums}/>
+      <AlbumsCarousel albums={newest} header='Recents' route={AppRoute.Search}/>
     </>
 
   )
