@@ -12,3 +12,5 @@ export interface NewUserData {
   readonly name: string;
   readonly password: string;
 }
+
+export type Logindata = Omit<NewUserData, 'name'>;

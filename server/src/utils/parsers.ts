@@ -1,5 +1,5 @@
 import {Request} from 'express';
-import {AlbumData, NewUserData} from '../types';
+import {AlbumData, Logindata, NewUserData} from '../types';
 import * as jwt from 'jsonwebtoken';
 import config from './config';
 
@@ -163,6 +163,21 @@ export const toNewUserData = (object: unknown): NewUserData => {
       password: parsePassword(object.password),
     };
     return newUser;
+  }
+  throw new Error('Incorrect data: a field missing');
+};
+
+export const toNewLoginData = (object: unknown): Logindata => {
+  if (!object || typeof object !== 'object') {
+    throw new Error('Incorrect or missing data');
+  }
+
+  if ('username' in object && 'password' in object) {
+    const newLogin: Logindata = {
+      username: parseUsername(object.username),
+      password: parsePassword(object.password),
+    };
+    return newLogin;
   }
   throw new Error('Incorrect data: a field missing');
 };
