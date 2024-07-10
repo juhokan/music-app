@@ -3,6 +3,7 @@ import Album from '../models/album';
 import * as express from 'express';
 import User from '../models/user';
 import * as jwt from 'jsonwebtoken';
+import {toNewAlbumData} from '../utils/parsers';
 require('dotenv').config();
 
 const secret = process.env.SECRET || 'no_secret';
@@ -16,7 +17,7 @@ albumRouter.get('/', async (_request, response) => {
 
 albumRouter.post('/', async (request: Request, response: Response, next) => {
   try {
-    const body = request.body;
+    const data = toNewAlbumData(request.body);
     let token;
 
     if ('token' in request && request.token) {
@@ -42,36 +43,19 @@ albumRouter.post('/', async (request: Request, response: Response, next) => {
       return response.status(401).json({error: 'user not found'});
     }
 
-    if (!body.album_id) {
-      return response.status(400).json({error: 'album_id missing'});
-    }
-
-    if (!body.image_url) {
-      return response.status(400).json({error: 'image_url missing'});
-    }
-
-    if (body.rating > 10 || body.rating < 0) {
-      return response.status(400).json({error: 'rating out of bounds'});
-    }
-
     const existingAlbum = await Album.findOne({
-      album_id: body.album_id,
+      album_id: data.album_id,
       user: user._id,
     });
 
     if (existingAlbum) {
       return response.status(400).json({
-        error: `Album with album_id ${body.album_id} already exists for this user`,
+        error: `Album with album_id ${data.album_id} already exists for this user`,
       });
     }
 
     const album = new Album({
-      album_id: body.album_id,
-      rating: body.rating,
-      title: body.title,
-      artist: body.artist,
-      image_url: body.image_url,
-      favourite: body.favourite,
+      ...data,
       user: user._id,
     });
 
@@ -139,22 +123,10 @@ albumRouter.delete('/:id', async (request, response, next) => {
 });
 
 albumRouter.put('/:id', async (request, response, next) => {
-  const body = request.body;
-
-  const updatedAlbum = {
-    album_id: body.album_id,
-    rating: body.rating,
-    title: body.title,
-    artist: body.artist,
-    image_url: body.image_url,
-    favourite: body.favourite,
-  };
+  const data = toNewAlbumData(request.body);
 
   try {
-    const album = await Album.findByIdAndUpdate(
-      request.params.id,
-      updatedAlbum
-    );
+    const album = await Album.findByIdAndUpdate(request.params.id, data);
     response.json(album);
   } catch (exception) {
     next(exception);
