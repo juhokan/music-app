@@ -2,11 +2,8 @@ import {Request, Response} from 'express';
 import Album from '../models/album';
 import * as express from 'express';
 import User from '../models/user';
-import * as jwt from 'jsonwebtoken';
-import {toNewAlbumData} from '../utils/parsers';
+import {toNewAlbumData, toTokenData} from '../utils/parsers';
 require('dotenv').config();
-
-const secret = process.env.SECRET || 'no_secret';
 
 const albumRouter = express.Router();
 
@@ -18,26 +15,11 @@ albumRouter.get('/', async (_request, response) => {
 albumRouter.post('/', async (request: Request, response: Response, next) => {
   try {
     const data = toNewAlbumData(request.body);
-    let token;
-
-    if ('token' in request && request.token) {
-      token = request.token as string;
-    } else {
+    const token = toTokenData(request);
+    if (!token) {
       return response.status(401).json({error: 'token invalid'});
     }
-
-    const decodedToken = jwt.verify(token, secret);
-
-    if (
-      !decodedToken ||
-      typeof decodedToken !== 'object' ||
-      !('id' in decodedToken) ||
-      !decodedToken.id
-    ) {
-      return response.status(401).json({error: 'token invalid'});
-    }
-
-    const user = await User.findById(decodedToken.id);
+    const user = await User.findById(token.id);
 
     if (!user) {
       return response.status(401).json({error: 'user not found'});
@@ -72,24 +54,9 @@ albumRouter.post('/', async (request: Request, response: Response, next) => {
 
 albumRouter.delete('/:id', async (request, response, next) => {
   try {
-    let token;
-
-    if ('token' in request && request.token) {
-      token = request.token as string;
-    } else {
+    const token = toTokenData(request);
+    if (!token) {
       return response.status(401).json({error: 'token invalid'});
-    }
-
-    const decodedToken = jwt.verify(token, secret);
-
-    if (
-      !request.token ||
-      !decodedToken ||
-      typeof decodedToken !== 'object' ||
-      !('id' in decodedToken) ||
-      !decodedToken.id
-    ) {
-      return response.status(401).json({error: 'token missing or invalid'});
     }
 
     const album = await Album.findById(request.params.id);
@@ -98,13 +65,13 @@ albumRouter.delete('/:id', async (request, response, next) => {
       return response.status(404).json({error: 'Album not found'});
     }
 
-    if (album.user?.toString() !== decodedToken.id.toString()) {
+    if (album.user?.toString() !== token.id.toString()) {
       return response.status(401).json({error: 'token invalid'});
     }
 
     await album.deleteOne();
 
-    const user = await User.findById(decodedToken.id);
+    const user = await User.findById(token.id);
 
     if (!user) {
       return response.status(404).json({error: 'User not found'});

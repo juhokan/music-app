@@ -1,4 +1,9 @@
+import {Request} from 'express';
 import {AlbumData} from '../types';
+import * as jwt from 'jsonwebtoken';
+import config from './config';
+
+const secret = config.SECRET;
 
 const isString = (text: unknown): text is string => {
   return typeof text === 'string' || text instanceof String;
@@ -89,4 +94,22 @@ export const toNewAlbumData = (object: unknown): AlbumData => {
   }
 
   throw new Error('Incorrect data: a field missing');
+};
+
+export const toTokenData = (req: Request): jwt.JwtPayload | undefined => {
+  if ('token' in req && req.token) {
+    const token = req.token as string;
+    const decoded = jwt.verify(token, secret);
+    if (
+      !decoded ||
+      typeof decoded !== 'object' ||
+      !('id' in decoded) ||
+      !decoded.id
+    ) {
+      return;
+    }
+    return decoded;
+  } else {
+    return;
+  }
 };
