@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import * as express from 'express';
@@ -9,7 +8,7 @@ const secret = process.env.SECRET || 'no_secret';
 
 const loginRouter = express.Router();
 
-loginRouter.post('/', async (request: any, response: any) => {
+loginRouter.post('/', async (request, response) => {
   const {username, password} = request.body;
 
   const user = await User.findOne({username});
@@ -31,9 +30,9 @@ loginRouter.post('/', async (request: any, response: any) => {
 
   const token = jwt.sign(userForToken, secret);
 
-  response
+  return response
     .status(200)
-    .send({token, username: user?.username, name: user?.name});
+    .json({token, username: user?.username, name: user?.name});
 });
 
 export default loginRouter;

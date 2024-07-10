@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import config from './utils/config';
 import * as express from 'express';
 const app = express();
 import * as cors from 'cors';
-import logger from './utils/logger';
 import mongoose from 'mongoose';
 import middleware from './utils/middleware';
 import usersRouter from './controllers/users';
@@ -13,16 +11,18 @@ import testingRouter from './controllers/testing';
 
 mongoose.set('strictQuery', false);
 
-logger.info('connecting to', config.MONGODB_URI);
+console.log('connecting to', config.MONGODB_URI);
 
 if (config.MONGODB_URI) {
   mongoose
     .connect(config.MONGODB_URI)
     .then(() => {
-      logger.info('connected to MongoDB');
+      console.log('connected to MongoDB');
     })
-    .catch((error: {message: any}) => {
-      logger.error('error connection to MongoDB:', error.message);
+    .catch(error => {
+      if (error instanceof Error) {
+        console.log('error connection to MongoDB:', error.message);
+      }
     });
 }
 

@@ -1,48 +1,51 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import logger from './logger';
+import {Request, Response, NextFunction} from 'express';
 
-const requestLogger = (request: any, response: any, next: any) => {
-  logger.info('Method:', request.method);
-  logger.info('Path:  ', request.path);
-  logger.info('Body:  ', request.body);
-  logger.info('---');
+const requestLogger = (req: Request, _res: Response, next: NextFunction) => {
+  console.log('Method:', req.method);
+  console.log('Path:  ', req.path);
+  console.log('Body:  ', req.body);
+  console.log('---');
   next();
 };
 
-const tokenExtractor = (request: any, response: any, next: any) => {
-  const authorization = request.get('authorization');
-  if (authorization && authorization.startsWith('Bearer ')) {
-    request.token = authorization.replace('Bearer ', '');
+declare module 'express' {
+  interface Request {
+    token?: string;
+  }
+}
+
+const tokenExtractor = (req: Request, _res: Response, next: NextFunction) => {
+  const auth = req.get('authorization');
+  if (auth && auth.startsWith('Bearer ')) {
+    req.token = auth.replace('Bearer ', '');
   }
   next();
 };
 
-const unknownEndpoint = (request: any, response: any) => {
-  response.status(404).send({error: 'unknown endpoint'});
+const unknownEndpoint = (_req: Request, res: Response) => {
+  res.status(404).send({error: 'unknown endpoint'});
 };
 
-const errorHandler = (error: any, request: any, response: any, next: any) => {
-  logger.error(error.message);
+const errorHandler = (error: Error, _req: Request, res: Response) => {
+  console.error(error.message);
 
   if (error.name === 'CastError') {
-    return response.status(400).send({error: 'malformatted id'});
+    return res.status(400).send({error: 'malformatted id'});
   } else if (error.name === 'ValidationError') {
-    return response.status(400).json({error: error.message});
+    return res.status(400).json({error: error.message});
   } else if (
     error.name === 'MongoServerError' &&
     error.message.includes('E11000 duplicate key error')
   ) {
-    return response
-      .status(400)
-      .json({error: 'expected `username` to be unique'});
+    return res.status(400).json({error: 'expected `username` to be unique'});
   } else if (error.name === 'JsonWebTokenError') {
-    return response.status(400).json({error: 'token missing or invalid'});
+    return res.status(400).json({error: 'token missing or invalid'});
   } else if (error.name === 'TokenExpiredError') {
-    return response.status(401).json({
+    return res.status(401).json({
       error: 'token expired',
     });
   }
-  next(error);
+  return res.status(500).json({error: 'unknown error'});
 };
 
 export default {

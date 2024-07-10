@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as bcrypt from 'bcrypt';
 import * as express from 'express';
 const usersRouter = express.Router();
 import User from '../models/user';
 
-usersRouter.get('/', async (request: any, response: any) => {
+usersRouter.get('/', async (_request, response) => {
   const users = await User.find({}).populate('albums', {
     album_id: 1,
     title: 1,
@@ -15,7 +14,7 @@ usersRouter.get('/', async (request: any, response: any) => {
   response.json(users);
 });
 
-usersRouter.post('/', async (request: any, response: any) => {
+usersRouter.post('/', async (request, response) => {
   const {username, name, password} = request.body;
 
   if (!username || username.length < 3) {
@@ -41,12 +40,12 @@ usersRouter.post('/', async (request: any, response: any) => {
 
   try {
     const savedUser = await user.save();
-    response.status(201).json(savedUser);
-  } catch (error: any) {
-    if (error.code === 11000) {
+    return response.status(201).json(savedUser);
+  } catch (error) {
+    if (error instanceof Error && 'code' in error && error.code === 11000) {
       return response.status(400).json({error: 'username must be unique'});
     }
-    response.status(500).json({error: 'something went wrong'});
+    return response.status(500).json({error: 'something went wrong'});
   }
 });
 

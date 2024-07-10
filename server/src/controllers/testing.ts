@@ -4,7 +4,7 @@ import User from '../models/user';
 
 const router = express.Router();
 
-router.post('/reset', async (request, response) => {
+router.post('/reset', async (_request, response) => {
   await Album.deleteMany({});
   await User.deleteMany({});
 

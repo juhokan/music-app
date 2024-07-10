@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import {Request, Response} from 'express';
 import Album from '../models/album';
 import * as express from 'express';
 import User from '../models/user';
@@ -9,18 +9,18 @@ const secret = process.env.SECRET || 'no_secret';
 
 const albumRouter = express.Router();
 
-albumRouter.get('/', async (request, response) => {
+albumRouter.get('/', async (_request, response) => {
   const albums = await Album.find({}).populate('user', {username: 1, name: 1});
   response.json(albums);
 });
 
-albumRouter.post('/', async (request: any, response: any, next) => {
+albumRouter.post('/', async (request: Request, response: Response, next) => {
   try {
     const body = request.body;
     let token;
 
-    if (request.token) {
-      token = request.token;
+    if ('token' in request && request.token) {
+      token = request.token as string;
     } else {
       return response.status(401).json({error: 'token invalid'});
     }
@@ -82,13 +82,21 @@ albumRouter.post('/', async (request: any, response: any, next) => {
 
     response.status(201).json(savedAlbum);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
-albumRouter.delete('/:id', async (request: any, response: any, next) => {
+albumRouter.delete('/:id', async (request, response, next) => {
   try {
-    const decodedToken = jwt.verify(request.token, secret);
+    let token;
+
+    if ('token' in request && request.token) {
+      token = request.token as string;
+    } else {
+      return response.status(401).json({error: 'token invalid'});
+    }
+
+    const decodedToken = jwt.verify(token, secret);
 
     if (
       !request.token ||
@@ -126,11 +134,11 @@ albumRouter.delete('/:id', async (request: any, response: any, next) => {
 
     response.status(204).end();
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 
-albumRouter.put('/:id', async (request: any, response: any, next) => {
+albumRouter.put('/:id', async (request, response, next) => {
   const body = request.body;
 
   const updatedAlbum = {
