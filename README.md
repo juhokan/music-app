@@ -70,21 +70,21 @@ Music app is a full stack web application built for the Full Stack Open course a
 This project builds upon a previous project located in the `music-review-app` repository. The previous project was similar in structure but used Strapi as a CMS. 
 
 ### Previous Project (music-review-app)
-| Date       | Client (hours) | Server (hours) |
+| Date       | Client (hours) | Strapi (hours) |
 |------------|----------------|----------------|
-| total      | 40             | 5              |
+| total      | 65             | 10              |
 
 ### Current Project
 | Date       | Client (hours) | Server (hours) |
 |------------|----------------|----------------|
-| total      | 5              | 3              |
+| total      | 15             | 30              |
 
 ### Total Time Spent
-| Project    | Client (hours) | Server (hours) |
-|------------|----------------|----------------|
-| music-review-app | 10             | 5              |
-| Current Project  | 9              | 9              |
-| Total           | 19             | 14             |
+| Project    | Total (hours) |
+|------------|----------------|
+| music-review-app | 75             |
+| Current Project  | 45              |
+| Total           | 120             |
 
 ## Client Task List
 - [x] Set up project structure
