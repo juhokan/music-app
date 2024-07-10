@@ -2,10 +2,10 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import * as express from 'express';
 import User from '../models/user';
+import config from '../utils/config';
 import {toNewLoginData} from '../utils/parsers';
-require('dotenv').config();
 
-const secret = process.env.SECRET || 'no_secret';
+const secret = config.SECRET;
 
 const loginRouter = express.Router();
 

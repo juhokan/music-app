@@ -1,9 +1,8 @@
-import {Request, Response} from 'express';
-import Album from '../models/album';
 import * as express from 'express';
+import Album from '../models/album';
 import User from '../models/user';
+import {Request, Response} from 'express';
 import {toNewAlbumData, toTokenData} from '../utils/parsers';
-require('dotenv').config();
 
 const albumRouter = express.Router();
 

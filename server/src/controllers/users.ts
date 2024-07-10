@@ -1,8 +1,9 @@
 import * as bcrypt from 'bcrypt';
 import * as express from 'express';
-const usersRouter = express.Router();
 import User from '../models/user';
 import {toNewUserData} from '../utils/parsers';
+
+const usersRouter = express.Router();
 
 usersRouter.get('/', async (_request, response) => {
   const users = await User.find({}).populate('albums', {

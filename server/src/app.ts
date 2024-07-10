@@ -1,13 +1,14 @@
-import config from './utils/config';
 import * as express from 'express';
-const app = express();
 import * as cors from 'cors';
+import config from './utils/config';
 import mongoose from 'mongoose';
 import middleware from './utils/middleware';
 import usersRouter from './controllers/users';
 import albumRouter from './controllers/albums';
 import loginRouter from './controllers/login';
 import testingRouter from './controllers/testing';
+
+const app = express();
 
 mongoose.set('strictQuery', false);
 

@@ -1,7 +1,7 @@
-import {Request} from 'express';
-import {AlbumData, Logindata, NewUserData} from '../types';
 import * as jwt from 'jsonwebtoken';
 import config from './config';
+import {Request} from 'express';
+import {AlbumData, Logindata, NewUserData} from '../types';
 
 const secret = config.SECRET;
 
