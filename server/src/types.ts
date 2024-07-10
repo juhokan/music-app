@@ -6,3 +6,9 @@ export interface AlbumData {
   readonly favourite: boolean;
   readonly image_url: string;
 }
+
+export interface NewUserData {
+  readonly username: string;
+  readonly name: string;
+  readonly password: string;
+}

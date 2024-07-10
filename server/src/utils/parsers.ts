@@ -1,5 +1,5 @@
 import {Request} from 'express';
-import {AlbumData} from '../types';
+import {AlbumData, NewUserData} from '../types';
 import * as jwt from 'jsonwebtoken';
 import config from './config';
 
@@ -112,4 +112,57 @@ export const toTokenData = (req: Request): jwt.JwtPayload | undefined => {
   } else {
     return;
   }
+};
+
+const isValidUsername = (username: string): boolean => {
+  return username.length >= 3;
+};
+
+const parseUsername = (username: unknown): string => {
+  if (!isString(username)) {
+    throw new Error('Incorrect or missing title');
+  }
+  const parsedUsername = username as string;
+  if (!isValidUsername(parsedUsername)) {
+    throw new Error('username must be at least 3 characters long');
+  }
+  return parsedUsername;
+};
+
+const isValidPassword = (password: string): boolean => {
+  return password.length >= 8;
+};
+
+const parsePassword = (password: unknown): string => {
+  if (!isString(password)) {
+    throw new Error('Incorrect or missing password');
+  }
+  const parsedPassword = password as string;
+  if (!isValidPassword(parsedPassword)) {
+    throw new Error('password must be at least 8 characters long');
+  }
+  return parsedPassword;
+};
+
+const parseName = (name: unknown): string => {
+  if (!isString(name)) {
+    throw new Error('Incorrect or missing name');
+  }
+  return name;
+};
+
+export const toNewUserData = (object: unknown): NewUserData => {
+  if (!object || typeof object !== 'object') {
+    throw new Error('Incorrect or missing data');
+  }
+
+  if ('username' in object && 'name' in object && 'password' in object) {
+    const newUser: NewUserData = {
+      username: parseUsername(object.username),
+      name: parseName(object.name),
+      password: parsePassword(object.password),
+    };
+    return newUser;
+  }
+  throw new Error('Incorrect data: a field missing');
 };
