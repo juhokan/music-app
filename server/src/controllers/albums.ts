@@ -47,6 +47,9 @@ albumRouter.post('/', async (request: Request, response: Response, next) => {
 
     response.status(201).json(savedAlbum);
   } catch (error) {
+    if (error instanceof Error) {
+      return response.status(400).json({error: error.message});
+    }
     return next(error);
   }
 });

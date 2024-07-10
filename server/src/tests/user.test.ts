@@ -1,6 +1,5 @@
 /* eslint-disable n/no-unpublished-import */
 import User from '../models/user';
-import * as helper from './testHelper';
 import {test, after, describe, beforeEach} from 'node:test';
 import mongoose from 'mongoose';
 import * as supertest from 'supertest';
@@ -17,7 +16,7 @@ describe('when there is initially no users at db', () => {
     const newUser = {
       username: 'test',
       name: 'Test User',
-      password: 'secret',
+      password: 'password',
     };
 
     await api
@@ -31,7 +30,7 @@ describe('when there is initially no users at db', () => {
     const newUser = {
       username: 'test',
       name: 'Test User',
-      password: 'secret',
+      password: 'password',
     };
 
     await api
@@ -43,7 +42,7 @@ describe('when there is initially no users at db', () => {
     const duplicateUser = {
       username: 'test',
       name: 'Test User',
-      password: 'secret',
+      password: 'password',
     };
 
     await api
@@ -58,7 +57,7 @@ test('creation fails if username is less than 3 characters', async () => {
   const newUser = {
     username: 'ro',
     name: 'Test User',
-    password: 'secret',
+    password: 'password',
   };
 
   await api
@@ -68,11 +67,11 @@ test('creation fails if username is less than 3 characters', async () => {
     .expect('Content-Type', /application\/json/);
 });
 
-test('creation fails if password is less than 3 characters', async () => {
+test('creation fails if password is less than 8 characters', async () => {
   const newUser = {
     username: 'rootuser',
     name: 'Test User',
-    password: 'pw',
+    password: 'passwrd',
   };
 
   await api

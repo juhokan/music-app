@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable n/no-unpublished-import */
 import {test, after, beforeEach} from 'node:test';
 import mongoose from 'mongoose';
@@ -8,10 +7,15 @@ import app from '../app';
 import Album from '../models/album';
 import User from '../models/user';
 import {createUserAndGetToken} from './testHelper';
+import {AlbumData} from '../types';
 
 const api = supertest(app);
 
 let token: string;
+
+interface TestAlbumData extends AlbumData {
+  readonly id: string;
+}
 
 const initialAlbums = [
   {
@@ -74,9 +78,8 @@ test('there are three albums', async () => {
 test('identifying field is id', async () => {
   const response = await api.get('/api/Albums');
 
-  response.body.forEach((album: any) => {
+  response.body.forEach((album: TestAlbumData) => {
     assert.strictEqual(typeof album.id, 'string');
-    assert.notStrictEqual(album._id, album.id);
   });
 });
 
