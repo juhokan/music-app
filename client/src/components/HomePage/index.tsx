@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import AlbumsCarousel from '../albums/AlbumsCarousel'
+import AlbumsCarousel from '../common/AlbumsCarousel'
 import { AlbumsContext, SpotifyContext } from '../../context'
 import { AppRoute } from '../../routes'
-import SpotifyAlbumData from '../../interface/SpotifyAlbumData'
+import { SpotifyAlbumData } from '../../types'
 import { getNewReleases } from '../../services/spotifyService'
-import { AlbumData } from '../../interface/AlbumData'
+import { AlbumData } from '../../types'
 import { transformSpotifyAlbum } from '../../utils/transformer'
 
 const LandingPage: React.FC = () => {

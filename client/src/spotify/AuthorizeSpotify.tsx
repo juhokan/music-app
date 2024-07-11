@@ -1,5 +1,5 @@
 import React from 'react'
-import { CLIENT_ID } from '../../config'
+import { CLIENT_ID } from './../config'
 import { Link } from 'react-router-dom'
 
 const AuthorizeSpotify: React.FC = () => {

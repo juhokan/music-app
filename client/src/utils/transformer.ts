@@ -1,5 +1,5 @@
-import { AlbumData } from "../interface/AlbumData"
-import SpotifyAlbumData from "../interface/SpotifyAlbumData"
+import { AlbumData } from "../types"
+import { SpotifyAlbumData } from "../types"
 
 export const transformSpotifyAlbum = 
   (spotify: SpotifyAlbumData, rating: number | null, favourite: boolean): AlbumData => {

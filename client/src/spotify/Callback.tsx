@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react"
 import { useNavigate } from 'react-router-dom'
-import { AppRoute } from "../../routes"
-import { CLIENT_ID, CLIENT_SECRET } from "../../config"
+import { AppRoute } from "./../routes"
+import { CLIENT_ID, CLIENT_SECRET } from "./../config"
 import axios from "axios"
-import { SpotifyContext } from "../../context"
-import SpotifyToken from "../../interface/SpotifyToken"
+import { SpotifyContext } from "./../context"
+import { SpotifyToken } from "../types"
 
 const Callback: React.FC = () => {
   const { setTokens } = React.useContext(SpotifyContext)

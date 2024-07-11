@@ -1,15 +1,15 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { AppRoute } from '../../routes'
-import { SearchContext, UserContext } from '../../context'
-import LandingPage from './LandingPage'
-import LoginForm from '../LoginForm'
+import { AppRoute } from '../routes'
+import { SearchContext, UserContext } from '../context'
+import LandingPage from './HomePage'
+import LoginForm from './LoginPage/LoginForm'
 import Callback from '../spotify/Callback'
-import AlbumPage from '../albums/AlbumPage'
+import AlbumPage from './AlbumPage'
 import SearchPage from './SearchPage'
-import Menubar from './Menubar'
-import ProfilePage from '../profile/ProfilePage'
-import Footer from './Footer'
+import Menubar from './common/Menubar'
+import ProfilePage from './ProfilePage'
+import Footer from './common/Footer'
 
 const AppContainer: React.FC = () => {
   const { user } = React.useContext(UserContext)

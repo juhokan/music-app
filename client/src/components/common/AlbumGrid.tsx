@@ -1,5 +1,5 @@
 import React from 'react'
-import { AlbumData, UserAlbumData } from '../../interface/AlbumData'
+import { AlbumData, UserAlbumData } from '../../types'
 import Album from './Album'
 
 interface AlbumGridProps {

@@ -2,9 +2,9 @@
 import React, { useEffect } from "react"
 import { SpotifyContext } from "../../context"
 import { searchAlbums } from "../../services/spotifyService"
-import SpotifyAlbumData from "../../interface/SpotifyAlbumData"
-import AlbumGrid from "../albums/AlbumGrid"
-import { AlbumData } from "../../interface/AlbumData"
+import { SpotifyAlbumData } from "../../types"
+import AlbumGrid from "../common/AlbumGrid"
+import { AlbumData } from "../../types"
 import { transformSpotifyAlbum } from "../../utils/transformer"
 
 interface AlbumSearchProps {

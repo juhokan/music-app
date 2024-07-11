@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { CLIENT_ID, CLIENT_SECRET } from '../config'
-import SpotifyAlbumData from '../interface/SpotifyAlbumData'
-import SpotifyToken from '../interface/SpotifyToken'
-import { SpotifyUserData } from '../interface/SpotifyUserData'
+import { SpotifyAlbumData } from '../types'
+import { SpotifyToken } from '../types'
+import { SpotifyUserData } from '../types'
 
 export const searchAlbums = async (token: string, key: string): Promise<SpotifyAlbumData[] | null> => {
   try {

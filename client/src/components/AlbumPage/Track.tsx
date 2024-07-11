@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react'
-import { SpotifyTrackObject } from '../../interface/SpotifyWrappers'
+import { SpotifyTrackObject } from '../../types'
 import play from '../../assets/play.png'
 import pause from '../../assets/pause.png'
 import { AudioContext } from '../../context'
@@ -86,7 +86,8 @@ const Track: React.FC<TrackProps> = ({ track, index }) => {
     <div className='track-container' key={track.id}>
       <div className='track-name-container'>
         <h4 className='track-name'>{index}. {track.name}.mp4</h4>
-        <h4 className='track-duration'>{transformTime(track.duration_ms)} - {track.artists.map(a => a.name).join(', ')}</h4>
+        <h4 className='track-duration'>
+          {transformTime(track.duration_ms)} - {track.artists.map(a => a.name).join(', ')}</h4>
       </div>
 
       <div className='track-audio-player-container'>

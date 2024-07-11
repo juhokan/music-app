@@ -2,9 +2,9 @@ import React from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import Album from './Album'
-import { AlbumData, UserAlbumData } from '../../interface/AlbumData'
+import { AlbumData, UserAlbumData } from '../../types'
 import { AppRoute } from '../../routes'
-import HeaderLink from '../core/HeaderLink'
+import HeaderLink from './HeaderLink'
 
 interface AlbumCarouselProps {
   readonly albums: AlbumData[] | UserAlbumData[] | null;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SpotifyTracklistObject } from '../../interface/SpotifyWrappers'
+import { SpotifyTracklistObject } from '../../types'
 import Track from './Track'
 
 interface AlbumTracklistProps {

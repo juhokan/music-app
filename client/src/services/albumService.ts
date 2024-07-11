@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AlbumData, UserAlbumData } from '../interface/AlbumData'
+import { AlbumData, UserAlbumData } from '../types'
 const url = '/api/albums'
 
 export const getAlbums = async (): Promise<UserAlbumData[] | null> => {

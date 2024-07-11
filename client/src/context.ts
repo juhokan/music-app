@@ -1,7 +1,7 @@
 import React from "react"
-import UserData from "./interface/UserData"
-import SpotifyToken from "./interface/SpotifyToken"
-import { UserAlbumData } from "./interface/AlbumData"
+import { UserData } from "./types"
+import { SpotifyToken } from "./types"
+import { UserAlbumData } from "./types"
 
 interface UserCtx {
   readonly user: UserData | null

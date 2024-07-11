@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import './App.css'
-import { UserAlbumData } from './interface/AlbumData'
+import { UserAlbumData } from './types'
 import { getAlbums } from './services/albumService'
 import { AlbumsContext, SearchContext, SpotifyContext, UserContext, AudioContext } from './context'
-import UserData from './interface/UserData'
-import AppContainer from './components/core/AppContainer'
-import SpotifyToken from './interface/SpotifyToken'
+import { UserData } from './types'
+import AppContainer from './components/AppContainer'
+import { SpotifyToken } from './types'
 import { refreshSpotifyToken } from './services/spotifyService'
 
 const USER_KEY = 'user'

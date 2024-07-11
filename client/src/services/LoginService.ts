@@ -1,6 +1,6 @@
 import axios from 'axios'
-import LoginCredentials from '../interface/LoginCredentials'
-import UserData from '../interface/UserData'
+import { LoginCredentials } from '../types'
+import { UserData } from '../types'
 const url = '/api/login'
 
 const login = async (credentials: LoginCredentials): Promise<UserData | null> => {

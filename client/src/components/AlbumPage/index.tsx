@@ -2,12 +2,12 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { AlbumsContext, SpotifyContext, UserContext } from '../../context'
-import SpotifyAlbumData from '../../interface/SpotifyAlbumData'
+import { SpotifyAlbumData } from '../../types'
 import { getAlbum } from '../../services/spotifyService'
 import { deleteAlbum, getAlbums, postAlbum } from '../../services/albumService'
 import { transformSpotifyAlbum } from '../../utils/transformer'
-import { UserAlbumData } from '../../interface/AlbumData'
-import Tracklist from '../tracks/Tracklist'
+import { UserAlbumData } from '../../types'
+import Tracklist from './Tracklist'
 
 const AlbumPage: React.FC = () => {
   const { albums, setAlbums } = React.useContext(AlbumsContext)
