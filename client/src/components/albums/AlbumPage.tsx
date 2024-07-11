@@ -32,6 +32,8 @@ const AlbumPage: React.FC = () => {
     if (user && albums) {
       checkCurrent()
     }
+    console.log(album)
+    
   }, [album, albums])
 
   const getSpotifyAlbum = async (): Promise<SpotifyAlbumData | null> => {
@@ -78,6 +80,8 @@ const AlbumPage: React.FC = () => {
       <div className='album-page-text-container'>
         <h1 className='album-page-title'>{album?.name}</h1>
         <h2 className='album-page-artist'>{album?.artists[0].name}</h2>
+        <h3>{album?.release_date.split('-')[0]} - {album?.label}</h3>
+        <h3>{album?.genres.join(', ')}</h3>
       </div>
       {album?.tracks && <Tracklist tracklist={album?.tracks}/>}
       {current && <div>added</div>}

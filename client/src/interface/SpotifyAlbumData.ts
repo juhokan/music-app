@@ -19,7 +19,7 @@ interface SpotifyAlbumData {
   readonly tracks: SpotifyTracklistObject
   readonly copyrights: SpotifyCopyrightObject
   readonly genres: string[]
-  readonly lablel: string
+  readonly label: string
 
 }
       

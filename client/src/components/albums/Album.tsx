@@ -20,8 +20,10 @@ const Album: React.FC<AlbumProps> = ({ id, image, name, artistName }) => {
       <div className='album-card-cover'>
         <img src={image} alt='album'className='album-card-cover'/>
       </div>
-      <h2 className='album-card-title'>{name}</h2>
-      <h3 className='album-card-artist'>{artistName}</h3>
+      <div className='album-card-title-container'>
+        <h2 className='album-card-title'>{name}</h2>
+        <h3 className='album-card-artist'>{artistName}</h3>
+      </div>
     </div>
   )
 }
