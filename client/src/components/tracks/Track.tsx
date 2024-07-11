@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react'
 import { SpotifyTrackObject } from '../../interface/SpotifyWrappers'
-import { MdPlayArrow, MdPause } from "react-icons/md"
+import play from '../../assets/play.png'
+import pause from '../../assets/pause.png'
 import { AudioContext } from '../../context'
 
 interface TrackProps {
   readonly track: SpotifyTrackObject;
+  readonly index: number
 }
 
-const Track: React.FC<TrackProps> = ({ track }) => {
+const Track: React.FC<TrackProps> = ({ track, index }) => {
   const { audio, setAudio, id, setId } = React.useContext(AudioContext)
   const [isPlaying, setIsPlaying] = useState(false)
   const progressBarRef = useRef<HTMLDivElement>(null)
@@ -82,24 +84,27 @@ const Track: React.FC<TrackProps> = ({ track }) => {
 
   return (
     <div className='track-container' key={track.id}>
-      <h4 className='track-name'>{track.name}</h4>
-      <h4 className='track-duration'>({transformTime(track.duration_ms)})</h4>
+      <div className='track-name-container'>
+        <h4 className='track-name'>{index}. {track.name}.mp4</h4>
+        <h4 className='track-duration'>{transformTime(track.duration_ms)} {track.artists.map(a => a.name).join(', ')}</h4>
+      </div>
 
-      {track.preview_url && (isPlaying && id === track.id ? (
-        <div className='track-play-container' onClick={stopAudio}>
-          <MdPause className='track-play-icon' size={'20px'}/>
-        </div>
-      ) : (
-        <div className='track-play-container' onClick={() => {track.preview_url && startAudio(track.preview_url)}}>
-          <MdPlayArrow className='track-play-icon' size={'20px'}/>
-        </div>
-      ))}
-
-      {audio && audio.src === track.preview_url && (
-        <div className='track-progress-container'>
-          <div className='track-progress' ref={progressBarRef} style={{ width: '0%' }}></div>
-        </div>
-      )}
+      <div className='track-audio-player-container'>
+        {audio && audio.src === track.preview_url && (
+          <div className='track-progress-container'>
+            <div className='track-progress' ref={progressBarRef} style={{ width: '0%' }}></div>
+          </div>
+        )}
+        {track.preview_url && (isPlaying && id === track.id ? (
+          <div className='track-play-container' onClick={stopAudio}>
+            <img src={pause} alt='Pause Icon' className='icon' />
+          </div>
+        ) : (
+          <div className='track-play-container' onClick={() => {track.preview_url && startAudio(track.preview_url)}}>
+            <img src={play} alt='Play Icon' className='icon' />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

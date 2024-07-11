@@ -9,6 +9,7 @@ import AlbumPage from '../albums/AlbumPage'
 import SearchPage from './SearchPage'
 import Menubar from './Menubar'
 import ProfilePage from '../profile/ProfilePage'
+import Footer from './Footer'
 
 const AppContainer: React.FC = () => {
   const { user } = React.useContext(UserContext)
@@ -34,6 +35,7 @@ const AppContainer: React.FC = () => {
           </Route>
         </Routes>
       </div>
+      <Footer />
     </Router>
   )
 }

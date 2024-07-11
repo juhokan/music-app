@@ -3,7 +3,7 @@ import { AppRoute } from "../../routes"
 import { SearchContext, UserContext } from "../../context"
 import { useLocation, useNavigate } from 'react-router-dom'
 import { MdOutlineSearch } from "react-icons/md"
-import { MdOutlinePermIdentity } from "react-icons/md"
+import profile from '../../assets/profile.png'
 
 
 
@@ -37,7 +37,7 @@ const Menubar: React.FC = () => {
   const headerImage = () => {
     return (
       <a href={AppRoute.Home} className='menubar-image'>
-        <h1>Rewind</h1>
+        <h4>music review app</h4>
       </a>
     )
   }
@@ -81,7 +81,7 @@ const Menubar: React.FC = () => {
     return (
       user ? (
         <a className='menubar-profile-link' href={AppRoute.Profile}>
-          <MdOutlinePermIdentity size='16px' />
+          <img src={profile} alt='Profile Icon' className='icon' />
         </a>
       ) : (
         <a href={AppRoute.Profile}>
