@@ -12,7 +12,7 @@ const Tracklist: React.FC<AlbumTracklistProps> = ({ tracklist }) => {
   return (
     <div className='tracklist-container'>
       {tracklist.items.map((t, i) => (
-        <Track track={t} index={i + 1}/>
+        <Track track={t} index={i + 1} key={i}/>
       ))}
     </div>
   )

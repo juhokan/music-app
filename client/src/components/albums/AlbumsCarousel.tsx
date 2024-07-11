@@ -35,10 +35,10 @@ const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums, header, route })
   return (
     <>
       {albums && (
-        <div className='carousel-container'>
+        <div >
           <HeaderLink header={header} route={route}/>
           <Carousel
-            className='album-carousel'
+            className='album-carousel carousel-container'
             partialVisible={true}
             swipeable={true}
             draggable={true}
