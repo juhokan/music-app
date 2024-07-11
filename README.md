@@ -77,14 +77,14 @@ This project builds upon a previous project located in the `music-review-app` re
 ### Current Project
 | Date       | Client (hours) | Server (hours) |
 |------------|----------------|----------------|
-| total      | 15             | 30              |
+| total      | 21             | 30              |
 
 ### Total Time Spent
 | Project    | Total (hours) |
 |------------|----------------|
 | music-review-app | 75             |
 | Current Project  | 45              |
-| Total           | 120             |
+| Total           | 126             |
 
 ## Client Task List
 - [x] Set up project structure
