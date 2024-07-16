@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { AlbumData, UserAlbumData } from '../types'
-const url = '/api/albums'
+import { SERVER_URL } from '../config'
+const url = `${SERVER_URL}/api/albums`
 
 export const getAlbums = async (): Promise<UserAlbumData[] | null> => {
   try {

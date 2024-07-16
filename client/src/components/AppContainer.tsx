@@ -9,6 +9,7 @@ import SearchPage from './SearchPage'
 import Menubar from './common/Menubar'
 import ProfilePage from './ProfilePage'
 import Footer from './common/Footer'
+import LoginForm from './LoginPage/LoginForm'
 
 const AppContainer: React.FC = () => {
   const { input } = React.useContext(SearchContext)
@@ -30,6 +31,9 @@ const AppContainer: React.FC = () => {
           </Route>
           <Route path={AppRoute.Profile}>
             <Route index element={<ProfilePage />} />
+          </Route>
+          <Route path={AppRoute.Login}>
+            <Route index element={<LoginForm />} />
           </Route>
         </Routes>
       </div>

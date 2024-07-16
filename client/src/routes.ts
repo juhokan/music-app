@@ -3,5 +3,6 @@ export enum AppRoute {
   Callback = '/callback',
   Search = '/search',
   Recent = '/recent',
-  Profile = '/profile'
+  Profile = '/profile',
+  Login = '/login'
 }

@@ -77,6 +77,10 @@ const Menubar: React.FC = () => {
     )
   }
 
+  const handleNavigate = () => {
+    navigate(AppRoute.Login)
+  }
+
   const profileLink = () => {
     return (
       user ? (
@@ -84,9 +88,9 @@ const Menubar: React.FC = () => {
           <img src={profile} alt='Profile Icon' className='icon' />
         </a>
       ) : (
-        <a href={AppRoute.Profile}>
+        <div onClick={handleNavigate}>
           <h3>Log In</h3>
-        </a>
+        </div>
       )
     )
   }
