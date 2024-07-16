@@ -12,20 +12,29 @@ jobs:
   e2e_test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '14'
 
       - name: Install dependencies
         working-directory: ./playwright
         run: npm ci
 
-      - name: Install Playwright Browsers
+      - name: Install Playwright browsers
         working-directory: ./playwright
-        run: npx playwright install --with-deps
+        run: npx playwright install
 
       - name: Run Playwright tests
         working-directory: ./playwright
         run: npm run test
+
+      - name: Show test report
+        if: always()
+        working-directory: ./playwright
+        run: npm run test:report
