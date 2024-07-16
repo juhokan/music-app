@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "start": "npm run build && npm run serve",
-    "serve": "npx vite",
+    "serve": "npx vite preview --port 5173",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite",
     "test": "playwright test"

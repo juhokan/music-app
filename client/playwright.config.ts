@@ -9,8 +9,8 @@ export default defineConfig({
   reporter: 'html',
   
   webServer: {
-    command: "yarn dev",
-    port: 5173,
+    command: 'npm run start',
+    url: 'http://127.0.0.1:5173',
     reuseExistingServer: !process.env.CI
   },
   
@@ -18,7 +18,7 @@ export default defineConfig({
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: "http://localhost:5173",
+    baseURL: "http://127.0.0.1:5173",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
