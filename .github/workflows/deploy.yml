@@ -4,17 +4,32 @@ on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     name: Deploy client
     runs-on: ubuntu-latest
-    concurrency: deploy
+    concurrency: deploy-group
     steps:
-      - uses: actions/checkout@v4
-      - uses: dentarg/fly@v1
-      - name: deploy
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Build project
+        working-directory: ./client
+        run: npm run build
+
+      - name: Deploy to Fly.io
+        uses: superfly/flyctl-actions@1.2
         working-directory: ./client
         with:
-          build-args: "VITE_CLIENT_ID=${{ secrets.CLIENT_ID }} VITE_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}"
+          args: "deploy --config ./client/fly.toml --build-arg VITE_CLIENT_ID=${{ secrets.CLIENT_ID }} --build-arg VITE_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}"
           fly-token: ${{ secrets.FLY_API_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
