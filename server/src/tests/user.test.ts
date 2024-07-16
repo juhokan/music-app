@@ -8,8 +8,6 @@ import Album from '../models/album';
 
 const api = supertest(app);
 
-const timeout = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
 describe('when there is initially no users at db', () => {
   beforeEach(async () => {
     await User.deleteMany({});
@@ -36,6 +34,7 @@ describe('when there is initially no users at db', () => {
       password: 'password',
     };
 
+    await api.post('/api/users').send(newUser).expect(201);
     await api.post('/api/users').send(newUser).expect(400);
   });
 });

@@ -16,7 +16,7 @@ const generateToken = (user: any) => {
 export const createUserAndGetToken = async () => {
   const passwordHash = await bcrypt.hash('password', 10);
   const user = new User({
-    username: 'testuser',
+    username: 'test',
     name: 'Test User',
     passwordHash,
   });
