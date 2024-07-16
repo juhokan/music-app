@@ -1,6 +1,6 @@
 import React from 'react'
-import { login } from '../../services/loginService'
 import { UserContext } from '../../context'
+import { login } from '../../services/userService'
 
 const LoginForm: React.FC = () => {
   const [loginUsername, setLoginUsername] = React.useState('')

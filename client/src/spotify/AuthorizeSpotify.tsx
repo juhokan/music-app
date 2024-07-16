@@ -1,5 +1,5 @@
 import React from 'react'
-import { CLIENT_ID } from './../config'
+import { CALLBACK_URL, CLIENT_ID } from './../config'
 import { Link } from 'react-router-dom'
 
 const AuthorizeSpotify: React.FC = () => {
@@ -11,7 +11,7 @@ const AuthorizeSpotify: React.FC = () => {
       response_type: 'code',
       client_id: CLIENT_ID,
       scope: scope,
-      redirect_uri: 'http://localhost:5173/callback',
+      redirect_uri: `${CALLBACK_URL}/callback`,
       state: state
     })
       

@@ -2,7 +2,7 @@
 import React from "react"
 import { useNavigate } from 'react-router-dom'
 import { AppRoute } from "./../routes"
-import { CLIENT_ID, CLIENT_SECRET } from "./../config"
+import { CALLBACK_URL, CLIENT_ID, CLIENT_SECRET } from "./../config"
 import axios from "axios"
 import { SpotifyContext } from "./../context"
 import { SpotifyToken } from "../types"
@@ -23,7 +23,7 @@ const Callback: React.FC = () => {
         const authHeader = `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`
         const authData = new URLSearchParams({
           code: code,
-          redirect_uri: 'http://localhost:5173/callback',
+          redirect_uri: `${CALLBACK_URL}/callback`,
           grant_type: 'authorization_code'
         }).toString()
   
