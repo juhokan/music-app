@@ -27,3 +27,7 @@ jobs:
       - name: Run tests
         working-directory: ./server
         run: npm run test
+
+      - name: Build server
+        working-directory: ./server
+        run: npm run build
