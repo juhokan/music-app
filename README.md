@@ -9,63 +9,6 @@
 ## Introduction
 Music app is a full stack web application built for the Full Stack Open course as a course project. The client is built with Vite and TypeScript, and the server is built with Node.js using MongoDB as the database.
 
-## Project Structure
-```
- ├ .git
- ├ .gitignore
- ├ LICENSE
- ├ README.md
- ├ client
- │  ├ .env
- │  ├ .eslintrc.cjs
- │  ├ .gitignore
- │  ├ README.md
- │  ├ index.html
- │  ├ node_modules
- │  ├ package-lock.json
- │  ├ package.json
- │  ├ public
- │  │  ├ vite.svg
- │  ├ src
- │  │  ├ App.css
- │  │  ├ App.tsx
- │  │  ├ assets
- │  │  ├ components
- │  │  ├ config.ts
- │  │  ├ context.ts
- │  │  ├ index.css
- │  │  ├ interface
- │  │  ├ main.tsx
- │  │  ├ routes.ts
- │  │  ├ services
- │  │  ├ utils
- │  │  ├ vite-env.d.ts
- │  ├ tsconfig.app.json
- │  ├ tsconfig.json
- │  ├ tsconfig.node.json
- │  ├ vite.config.ts
- ├ server
- │  ├ .editorconfig
- │  ├ .env
- │  ├ .eslintignore
- │  ├ .eslintrc.json
- │  ├ .prettierrc.js
- │  ├ dist
- │  │  ├ src
- │  ├ node_modules
- │  ├ package-lock.json
- │  ├ package.json
- │  ├ src
- │  │  ├ app.ts
- │  │  ├ controllers
- │  │  ├ index.ts
- │  │  ├ models
- │  │  ├ tests
- │  │  ├ types.ts
- │  │  ├ utils
- │  └ tsconfig.json
-```
-
 ## Time Tracking
 This project builds upon a previous project located in the `music-review-app` repository. The previous project was similar in structure but used Strapi as a CMS. 
 
@@ -77,14 +20,14 @@ This project builds upon a previous project located in the `music-review-app` re
 ### Current Project
 | Date       | Client (hours) | Server (hours) |
 |------------|----------------|----------------|
-| total      | 21             | 30              |
+| total      | 28             | 30              |
 
 ### Total Time Spent
 | Project    | Total (hours) |
 |------------|----------------|
 | music-review-app | 75             |
-| Current Project  | 45              |
-| Total           | 126             |
+| Current Project  | 58              |
+| Total           | 133             |
 
 ## Client Task List
 - [x] Set up project structure
@@ -114,5 +57,6 @@ This project builds upon a previous project located in the `music-review-app` re
 - [x] Create user and album schema
 - [x] Parse user and album data
 - [x] Create tests for users and albums
+- [x] GitHub workflow for tests
 - [ ] Create Up-Next albums
 - [ ] Add friends for user
