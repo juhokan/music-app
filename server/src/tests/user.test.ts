@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import * as supertest from 'supertest';
 import app from '../app';
 import Album from '../models/album';
+import {usersInDb} from './testHelper';
 
 const api = supertest(app);
 
@@ -39,6 +40,9 @@ describe('when there is initially no users at db', () => {
       .send(newUser)
       .expect(201)
       .expect('Content-Type', /application\/json/);
+
+    const u = await usersInDb();
+    console.log(u);
 
     await api
       .post('/api/users')
