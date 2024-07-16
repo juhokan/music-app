@@ -9,7 +9,7 @@ export default defineConfig({
   reporter: 'html',
   
   webServer: {
-    command: "npm run start",
+    command: "npx vite dev",
     port: 5173,
     reuseExistingServer: !process.env.CI
   },
