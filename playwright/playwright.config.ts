@@ -11,12 +11,20 @@ import { defineConfig, devices } from '@playwright/test'
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  webServer: {
-    command: 'npm run start',
-    url: 'http://localhost:5173/',
-    timeout: 120 * 1000,
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    {
+      command: 'cd ../server && npm i && npm run start',
+      url: 'http://localhost:3003',
+      timeout: 120 * 1000,
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command: 'cd ../client && npm i && npm run dev',
+      url: 'http://localhost:5173',
+      timeout: 120 * 1000,
+      reuseExistingServer: !process.env.CI,
+    }
+  ],
   use: {
     baseURL: 'http://localhost:5173',
   },
