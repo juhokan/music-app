@@ -12,6 +12,10 @@ const api = supertest(app);
 describe('when there is initially no users at db', () => {
   beforeEach(async () => {
     await User.deleteMany({});
+
+    const user = new User({username: 'root', passwordHash: 'hash'});
+
+    await user.save();
   });
 
   test('creation succeeds with a fresh username', async () => {
@@ -30,24 +34,22 @@ describe('when there is initially no users at db', () => {
 
   test('creation fails with taken username', async () => {
     const newUser = {
-      username: 'testuser',
+      username: 'root',
       name: 'Test User',
       password: 'password',
     };
 
-    await api
-      .post('/api/users')
-      .send(newUser)
-      .expect(201)
-      .expect('Content-Type', /application\/json/);
-    const users = await usersInDb();
-    console.log('Users in DB after insertion:', users);
+    const b = await usersInDb();
+    console.log('Users in DB before insertion:', b);
 
     await api
       .post('/api/users')
       .send(newUser)
       .expect(400)
       .expect('Content-Type', /application\/json/);
+
+    const a = await usersInDb();
+    console.log('Users in DB after insertion:', a);
   });
 });
 
