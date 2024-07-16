@@ -8,6 +8,8 @@ import Album from '../models/album';
 
 const api = supertest(app);
 
+const timeout = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 describe('when there is initially no users at db', () => {
   beforeEach(async () => {
     await User.deleteMany({});
@@ -29,16 +31,10 @@ describe('when there is initially no users at db', () => {
 
   test('creation fails if username already taken', async () => {
     const newUser = {
-      username: 'test',
+      username: 'testuser',
       name: 'Test User',
       password: 'password',
     };
-
-    await api
-      .post('/api/users')
-      .send(newUser)
-      .expect(201)
-      .expect('Content-Type', /application\/json/);
 
     await api.post('/api/users').send(newUser).expect(400);
   });
