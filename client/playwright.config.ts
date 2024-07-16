@@ -9,7 +9,7 @@ export default defineConfig({
   reporter: 'html',
   
   webServer: {
-    command: "npm run build && npx vite preview --port 5173",
+    command: "yarn dev",
     port: 5173,
     reuseExistingServer: !process.env.CI
   },
