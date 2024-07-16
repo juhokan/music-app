@@ -31,3 +31,12 @@ jobs:
       - name: Build server
         working-directory: ./server
         run: npm run build
+  version_bump:
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.70.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
