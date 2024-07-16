@@ -16,4 +16,4 @@ jobs:
         working-directory: ./client
         run: flyctl deploy --remote-only --build-secret VITE_CLIENT_ID=${{ secrets.CLIENT_ID }}
         env:
-          FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
+          FLY_API_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
