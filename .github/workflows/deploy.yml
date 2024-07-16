@@ -29,7 +29,6 @@ jobs:
 
       - name: Deploy to Fly.io
         uses: superfly/flyctl-actions@1.2
-        working-directory: ./client
         with:
           args: "deploy --config ./client/fly.toml --build-arg VITE_CLIENT_ID=${{ secrets.CLIENT_ID }} --build-arg VITE_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}"
           fly-token: ${{ secrets.FLY_API_TOKEN }}
