@@ -25,4 +25,4 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         working-directory: ./client
-        run: npm run test
+        run: DEBUG=pw:browser npm run test
