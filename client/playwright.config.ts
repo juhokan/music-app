@@ -9,7 +9,7 @@ export default defineConfig({
   reporter: 'html',
   
   webServer: {
-    command: 'npm run build && npm run serve',
+    command: 'npm run dev',
     url: 'http://localhost:4173/',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI
