@@ -2,9 +2,9 @@
 
 ## Table of Contents
 1. Introduction
-2. Project Structure
-3. Time Tracking
-4. License
+2. Time Tracking
+3. Client task list
+4. Server task list
 
 ## Introduction
 Music app is a full stack web application built for the Full Stack Open course as a course project. The client is built with Vite and TypeScript, and the server is built with Node.js using MongoDB as the database.
