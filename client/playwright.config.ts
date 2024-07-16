@@ -9,14 +9,14 @@ export default defineConfig({
   reporter: 'html',
   
   webServer: {
-    command: 'npm run build && npm run serve',
-    url: 'http://localhost:4173/',
+    command: 'npm run dev',
+    url: 'http://localhost:5173/',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI
   },
   
   use: {
-    baseURL: 'http://localhost:4173'
+    baseURL: 'http://localhost:5173'
   },
 
   projects: [
