@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --open --mode development",
     "serve": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
+    "preview": "vite",
     "test": "playwright test"
   },
   "dependencies": {
