@@ -10,13 +10,13 @@ export default defineConfig({
   
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:4173/',
+    url: 'http://localhost:5173/',
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI
   },
   
   use: {
-    baseURL: 'http://localhost:4173'
+    baseURL: 'http://localhost:5173'
   },
 
   projects: [
