@@ -4,31 +4,16 @@ on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     name: Deploy client
     runs-on: ubuntu-latest
     concurrency: deploy-group
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: deploy  
         working-directory: ./client
-        run: npm ci
-
-      - name: Build project
-        working-directory: ./client
-        run: npm run build
-
-      - name: Deploy to Fly.io
-        uses: superfly/flyctl-actions@1.2
-        with:
-          args: "deploy --config ./client/fly.toml --build-arg VITE_CLIENT_ID=${{ secrets.CLIENT_ID }} --build-arg VITE_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}"
-          fly-token: ${{ secrets.FLY_CLIENT_TOKEN }}
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
