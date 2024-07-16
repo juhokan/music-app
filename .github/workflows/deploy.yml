@@ -8,12 +8,13 @@ jobs:
   deploy:
     name: Deploy client
     runs-on: ubuntu-latest
-    concurrency: deploy-group
+    concurrency: deploy
     steps:
       - uses: actions/checkout@v4
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: deploy  
+      - uses: dentarg/fly@v1
+      - name: deploy
         working-directory: ./client
-        run: flyctl deploy --remote-only --build-secret VITE_CLIENT_ID=${{ secrets.CLIENT_ID }}
-        env:
-          FLY_API_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        with:
+          build-args: "VITE_CLIENT_ID=${{ secrets.CLIENT_ID }} VITE_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}"
+          fly-token: ${{ secrets.FLY_API_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
