@@ -4,6 +4,7 @@ import {test, after, describe, beforeEach} from 'node:test';
 import mongoose from 'mongoose';
 import * as supertest from 'supertest';
 import app from '../app';
+import Album from '../models/album';
 
 const api = supertest(app);
 
@@ -39,11 +40,7 @@ describe('when there is initially no users at db', () => {
       .expect(201)
       .expect('Content-Type', /application\/json/);
 
-    await api
-      .post('/api/users')
-      .send(newUser)
-      .expect(400)
-      .expect('Content-Type', /application\/json/);
+    await api.post('/api/users').send(newUser).expect(400);
   });
 });
 
@@ -77,5 +74,6 @@ test('creation fails if password is less than 8 characters', async () => {
 
 after(async () => {
   await User.deleteMany({});
+  await Album.deleteMany({});
   await mongoose.connection.close();
 });

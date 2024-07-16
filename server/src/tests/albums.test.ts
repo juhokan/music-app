@@ -271,5 +271,7 @@ test('PUT /api/Albums/:id updates a Album post', async () => {
 });
 
 after(async () => {
+  await User.deleteMany({});
+  await Album.deleteMany({});
   await mongoose.connection.close();
 });
