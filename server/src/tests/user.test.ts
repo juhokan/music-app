@@ -39,15 +39,9 @@ describe('when there is initially no users at db', () => {
       .expect(201)
       .expect('Content-Type', /application\/json/);
 
-    const duplicateUser = {
-      username: 'test',
-      name: 'Test User',
-      password: 'password',
-    };
-
     await api
       .post('/api/users')
-      .send(duplicateUser)
+      .send(newUser)
       .expect(400)
       .expect('Content-Type', /application\/json/);
   });
