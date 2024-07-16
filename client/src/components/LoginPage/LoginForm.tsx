@@ -1,5 +1,5 @@
 import React from 'react'
-import loginService from '../../services/loginService'
+import { login } from '../../services/loginService'
 import { UserContext } from '../../context'
 
 const LoginForm: React.FC = () => {
@@ -11,7 +11,7 @@ const LoginForm: React.FC = () => {
     event.preventDefault()
 
 
-    const newUser = await loginService.login({ username: loginUsername, password: loginPassword })
+    const newUser = await login({ username: loginUsername, password: loginPassword })
     if (newUser?.name && newUser?.username && newUser?.token) {
       setUser(newUser)
 
