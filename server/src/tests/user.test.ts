@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import * as supertest from 'supertest';
 import app from '../app';
 import Album from '../models/album';
+import assert = require('node:assert');
 
 const api = supertest(app);
 
@@ -27,15 +28,26 @@ describe('when there is initially no users at db', () => {
       .expect('Content-Type', /application\/json/);
   });
 
-  test('creation fails if username already taken', async () => {
+  test('creation fails with proper statuscode and message if username already taken', async () => {
     const newUser = {
-      username: 'testuser',
-      name: 'Test User',
-      password: 'password',
+      username: 'root',
+      name: 'Superuser',
+      password: 'salainen',
     };
 
-    await api.post('/api/users').send(newUser).expect(201);
-    await api.post('/api/users').send(newUser).expect(400);
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+
+    const result = await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/);
+
+    assert(result.body.error.includes('username must be unique'));
   });
 });
 
