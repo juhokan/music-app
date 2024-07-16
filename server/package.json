@@ -22,6 +22,7 @@
     "start": "NODE_ENV=production node dist/src/index.js",
     "dev": "NODE_ENV=development nodemon src/index.ts",
     "test": "NODE_ENV=test node --test",
+    "compile": "tsc",
     "lint": "gts lint",
     "clean": "gts clean",
     "fix": "gts fix",
