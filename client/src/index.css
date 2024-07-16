@@ -1,14 +1,12 @@
 :root {
   --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   --line-height: 1.5;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --text-color: #171717;
-  --secondary-text-color: rgba(87, 87, 90, 0.8);
+  --font-weight-normal: 300;
+  --font-weight-medium: 400;
+  --text-color: #f0f0f0;
+  --secondary-text-color: #b8b8b8;
   --link-color: #121212;
   --link-hover-color: #3e3e3e;
-  --accent-color: #ff8800;
-  --accent-hover-color: #ffaa33;
 
   --focus-outline-color: #4caeff;
   --selection-background-color: #333333;
@@ -21,7 +19,7 @@ body {
   line-height: var(--line-height);
   font-weight: var(--font-weight-normal);
   margin: 0px !important;
-  background: url('/src/assets/bg.jpg') no-repeat center center fixed;
+  background-color: #000000;
   background-size: cover;
   height: 100vh;
 }
@@ -38,14 +36,21 @@ body {
   min-height: 100vh;
 }
 
+h1 {
+  font-size: 36px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-color);
+}
 h2 {
   font-size: 24px;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-color);
 }
 
 h3 {
   font-size: 16px;
   font-weight: var(--font-weight-normal);
+  color: var(--secondary-text-color);
 }
 
 a {
@@ -59,7 +64,7 @@ a:hover {
 
 @media only screen and (max-width: 768px) {
   h1 {
-    font-size: 20px;
+    font-size: 24px;
   }
   
   h2 {

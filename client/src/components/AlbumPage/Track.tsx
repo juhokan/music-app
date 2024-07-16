@@ -85,9 +85,9 @@ const Track: React.FC<TrackProps> = ({ track, index }) => {
   return (
     <div className='track-container' key={track.id}>
       <div className='track-name-container'>
-        <h4 className='track-name'>{index}. {track.name}.mp4</h4>
-        <h4 className='track-duration'>
-          {transformTime(track.duration_ms)} - {track.artists.map(a => a.name).join(', ')}</h4>
+        <h3 className='track-name'>{index}. {track.name}</h3>
+        <h3 className='track-duration'>
+          {transformTime(track.duration_ms)} - {track.artists.map(a => a.name).join(', ')}</h3>
       </div>
 
       <div className='track-audio-player-container'>
