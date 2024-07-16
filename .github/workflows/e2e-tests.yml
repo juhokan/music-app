@@ -33,8 +33,3 @@ jobs:
       - name: Run Playwright tests
         working-directory: ./playwright
         run: npm run test
-
-      - name: Show test report
-        if: always()
-        working-directory: ./playwright
-        run: npm run test:report

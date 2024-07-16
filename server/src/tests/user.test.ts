@@ -40,9 +40,8 @@ describe('when there is initially no users at db', () => {
       .send(newUser)
       .expect(201)
       .expect('Content-Type', /application\/json/);
-
-    const u = await usersInDb();
-    console.log(u);
+    const users = await usersInDb();
+    console.log('Users in DB after insertion:', users);
 
     await api
       .post('/api/users')
