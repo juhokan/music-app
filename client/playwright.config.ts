@@ -9,14 +9,13 @@ export default defineConfig({
   reporter: 'html',
   
   webServer: {
-    command: 'npm run start',
-    url: 'http://localhost:4173/',
-    timeout: 120 * 1000,
+    command: process.env.CI ? "npx vite preview --port 5173" : "npx vite dev",
+    port: 5173,
     reuseExistingServer: !process.env.CI
   },
   
   use: {
-    baseURL: 'http://localhost:4173'
+    baseURL: 'http://localhost:5173'
   },
 
   projects: [
