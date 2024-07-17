@@ -14,9 +14,11 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: deploy  
         working-directory: ./server
-        run: flyctl deploy --build-arg DBUN=${{ secrets.DBUN }} --build-arg DBPW=${{ secrets.DBPW }} --build-arg MDB_URI=${{ secrets.MDB_URI }} --build-arg SCRT=${{ secrets.SCRT }} --remote-only
+        run: |
+          flyctl deploy --build-arg DBUN="${{ secrets.DBUN }}" --build-arg DBPW="${{ secrets.DBPW }}" --build-arg MDB_URI="${{ secrets.MDB_URI }}" --build-arg SCRT="${{ secrets.SCRT }}" --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
+
   deploy_client:
     name: Deploy client
     runs-on: ubuntu-latest
