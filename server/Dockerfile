@@ -11,7 +11,7 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV="production"
-ENV PORT=3003
+ENV PORT=3000
 
 ARG DBUN
 ARG DBPW
