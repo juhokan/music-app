@@ -13,8 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Deploy
+      - name: Build and Deploy Docker Image
         working-directory: ./client
-        run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
+        run: |
+          docker build \
+            --build-arg VITE_CLIENT_ID=${{ secrets.CLIENT_ID }} \
+            --build-arg VITE_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} \
+            -t client-image .
+          flyctl deploy --remote-only --image client-image

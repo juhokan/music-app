@@ -13,8 +13,14 @@ WORKDIR /app
 ENV NODE_ENV="production"
 ENV VITE_CALLBACK_URL=https://music-client.fly.dev
 ENV VITE_SERVER_URL=https://music-app-server.fly.dev
-ENV VITE_CLIENT_ID=test
 
+# Accept build arguments for Vite client ID and secret
+ARG VITE_CLIENT_ID
+ARG VITE_CLIENT_SECRET
+
+# Set environment variables from build arguments
+ENV VITE_CLIENT_ID=${VITE_CLIENT_ID}
+ENV VITE_CLIENT_SECRET=${VITE_CLIENT_SECRET}
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -35,7 +41,6 @@ RUN npm run build
 
 # Remove development dependencies
 RUN npm prune --omit=dev
-
 
 FROM ubuntu
 RUN apt-get update
