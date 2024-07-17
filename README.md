@@ -20,14 +20,14 @@ This project builds upon a previous project located in the `music-review-app` re
 ### Current Project
 | Date       | Client (hours) | Server (hours) |
 |------------|----------------|----------------|
-| total      | 35             | 30              |
+| total      | 40             | 30              |
 
 ### Total Time Spent
 | Project    | Total (hours) |
 |------------|----------------|
 | music-review-app | 75             |
-| Current Project  | 65              |
-| Total           | 140             |
+| Current Project  | 70              |
+| Total           | 145             |
 
 ## Client Task List
 - [x] Set up project structure
@@ -40,7 +40,8 @@ This project builds upon a previous project located in the `music-review-app` re
 - [x] Fetch albums from Spotify
 - [x] Add a new review
 - [x] Delete existing review
-- [ ] UI styling
+- [x] UI styling
+- [x] CI/CD Pipeline for tests and deployment
 - [ ] Change review score
 - [ ] Implement user page
 - [ ] Fetch users Spotify-albums
@@ -57,6 +58,6 @@ This project builds upon a previous project located in the `music-review-app` re
 - [x] Create user and album schema
 - [x] Parse user and album data
 - [x] Create tests for users and albums
-- [x] GitHub workflow for tests
+- [x] CI/CD Pipeline for tests and deployment
 - [ ] Create Up-Next albums
 - [ ] Add friends for user
