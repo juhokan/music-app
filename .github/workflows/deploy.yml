@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     name: Deploy client
@@ -12,10 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: deploy  
+      - name: Deploy
         working-directory: ./client
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
-        if: ${{ success() }}
+      - name: Set Fly.io Secrets
         run: flyctl secrets set VITE_CLIENT_ID=${{ secrets.CLIENT_ID }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
