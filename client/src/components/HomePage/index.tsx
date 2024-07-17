@@ -41,7 +41,6 @@ const LandingPage: React.FC = () => {
  
   return (
     <>
-      <h1>New version deployed</h1>
       <AlbumsCarousel albums={newest} header='recents' route={AppRoute.Search}/>
       {tokens && <AlbumsCarousel albums={transformed} header='new releases' route={AppRoute.Search}/>}
     </>
