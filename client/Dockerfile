@@ -13,6 +13,7 @@ WORKDIR /app
 ENV NODE_ENV="production"
 ENV VITE_CALLBACK_URL=https://music-client.fly.dev
 ENV VITE_SERVER_URL=https://music-app-server.fly.dev
+ENV VITE_CLIENT_ID=test
 
 
 # Throw-away build stage to reduce size of final image

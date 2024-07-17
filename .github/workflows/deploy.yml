@@ -18,8 +18,3 @@ jobs:
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
-      - name: Set Fly.io Secrets
-        working-directory: ./client
-        run: flyctl secrets set VITE_CLIENT_ID=${{ secrets.CLIENT_ID }}
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
