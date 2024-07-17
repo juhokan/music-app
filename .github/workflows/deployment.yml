@@ -1,0 +1,31 @@
+name: Fly Deploy
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+deploy_server:
+    name: Deploy server
+    runs-on: ubuntu-latest
+    concurrency: deploy-group
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: deploy  
+        working-directory: ./server
+        run: flyctl deploy --build-arg DBUN=${{ secrets.DBUN }} --build-arg DBPW=${{ secrets.DBPW }} --build-arg MDB_URI=${{ secrets.MDB_URI }} --build-arg SCRT=${{ secrets.SCRT }} --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
+  deploy_client:
+    name: Deploy client
+    runs-on: ubuntu-latest
+    concurrency: deploy-group
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: deploy  
+        working-directory: ./client
+        run: flyctl deploy --build-arg CLIENT_ID=${{ secrets.CLIENT_ID }} --build-arg CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}

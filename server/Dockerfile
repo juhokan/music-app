@@ -11,6 +11,17 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV="production"
+ENV PORT=3003
+
+ARG DBUN
+ARG DBPW
+ARG MDB_URI
+ARG SCRT
+
+ENV DB_USERNAME=$DBUN
+ENV DB_PASSWORD=$DBPW
+ENV MONGODB_URI=$MDB_URI
+ENV SECRET=$SCRT
 
 
 # Throw-away build stage to reduce size of final image

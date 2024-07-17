@@ -1,4 +1,4 @@
-name: API Tests
+name: Tests
 
 on:
   push:
@@ -31,6 +31,7 @@ jobs:
       - name: Build server
         working-directory: ./server
         run: npm run build
+        
   version_bump:
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
     runs-on: ubuntu-latest
@@ -40,3 +41,21 @@ jobs:
         uses: anothrNick/github-tag-action@1.70.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  e2e_test:
+    timeout-minutes: 60
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '21'
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+      - name: Install Playwright Browsers
+        working-directory: ./client
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        working-directory: ./client
+        run: npm run test
