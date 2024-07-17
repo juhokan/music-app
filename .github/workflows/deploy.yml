@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     name: Deploy client
@@ -13,11 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Build image and deploy to Fly.io
+      - name: deploy  
         working-directory: ./client
+        run: flyctl deploy --build-arg CLIENT_ID=${{ secrets.CLIENT_ID }} --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_CLIENT_TOKEN }}
-          VITE_CLIENT_ID: ${{ secrets.VITE_CLIENT_ID }}
-          VITE_CLIENT_SECRET: ${{ secrets.VITE_CLIENT_SECRET }}
-        run: |
-          docker build -t client-image . && flyctl deploy --remote-only --image client-image
