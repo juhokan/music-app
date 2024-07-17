@@ -2,7 +2,7 @@
 
 # Adjust NODE_VERSION as desired
 ARG NODE_VERSION=18.19.0
-FROM node:${NODE_VERSION}-slim as base
+FROM node:${NODE_VERSION}-slim AS base
 
 LABEL fly_launch_runtime="Vite"
 
@@ -14,9 +14,8 @@ ENV NODE_ENV="production"
 ENV VITE_CALLBACK_URL=https://music-client.fly.dev
 ENV VITE_SERVER_URL=https://music-app-server.fly.dev
 
-
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM base AS build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
@@ -34,7 +33,6 @@ RUN npm run build
 
 # Remove development dependencies
 RUN npm prune --omit=dev
-
 
 FROM ubuntu
 RUN apt-get update
