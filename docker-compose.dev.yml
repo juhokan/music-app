@@ -1,0 +1,43 @@
+services:
+  nginx:
+    image: nginx
+    ports:
+      - 8888:80
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - client
+      - server
+    
+
+  client:
+    image: client-dev
+    build:
+      context: ./client/
+      dockerfile: Dockerfile
+    volumes:
+      - ./client/:/usr/src/app
+    environment:
+      - VITE_BACKEND_URL=server/
+
+  server:
+    image: server-dev
+    build:
+      context: ./server/
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./server/:/usr/src/app
+    environment:
+      - MONGODB_URI=mongodb://root:password@mongo:27017/music-app-db
+
+  mongo:
+    image: mongo
+    ports:
+      - 3456:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: music-app-db
+    volumes: 
+      - ./server/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./server/mongo_data:/data/db
