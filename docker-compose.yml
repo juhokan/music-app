@@ -24,7 +24,7 @@ services:
     image: server-dev
     build:
       context: ./server/
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     volumes:
       - ./server/:/usr/src/app
     environment:
