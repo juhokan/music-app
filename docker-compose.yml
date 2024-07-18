@@ -2,7 +2,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - 8888:80
+      - 8080:80
     volumes:
       - ./nginx.dev.conf:/etc/nginx/nginx.conf
     depends_on:
@@ -24,9 +24,11 @@ services:
     image: server-dev
     build:
       context: ./server/
-      dockerfile: dev.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./server/:/usr/src/app
+    ports:
+      - 3000:3000
     environment:
       - MONGODB_URI=mongodb://root:password@mongo:27017/music-app-db
 
