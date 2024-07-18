@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import * as express from 'express';
 import User from '../models/user';
 import {toNewUserData} from '../utils/parsers';
