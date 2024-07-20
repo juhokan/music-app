@@ -9,6 +9,7 @@ import { transformSpotifyAlbum } from '../../utils/transformer'
 import { UserAlbumData } from '../../types'
 import Tracklist from './Tracklist'
 import AlbumSkeleton from './AlbumSkeleton'
+import './index.css'
 
 const AlbumPage: React.FC = () => {
   const { albums, setAlbums } = React.useContext(AlbumsContext)

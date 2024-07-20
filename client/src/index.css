@@ -5,12 +5,6 @@
   --font-weight-medium: 400;
   --text-color: #f0f0f0;
   --secondary-text-color: #b8b8b8;
-  --link-color: #121212;
-  --link-hover-color: #3e3e3e;
-
-  --focus-outline-color: #4caeff;
-  --selection-background-color: #333333;
-  --selection-text-color: #ffffff;
 }
 
 body {
@@ -48,7 +42,7 @@ h2 {
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: var(--font-weight-normal);
   color: var(--secondary-text-color);
 }

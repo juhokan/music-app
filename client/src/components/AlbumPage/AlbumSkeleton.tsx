@@ -1,4 +1,3 @@
-
 import { Skeleton } from 'primereact/skeleton'
 
 const AlbumSkeleton = () => {

@@ -1,11 +1,10 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import { AlbumData, UserAlbumData } from '../../types'
 import { AppRoute } from '../../routes'
 import HeaderLink from './HeaderLink'
-
-const Album = lazy(() => import('./Album'))
+import Album from './Album'
 
 interface AlbumCarouselProps {
   readonly albums: AlbumData[] | UserAlbumData[] | null;
@@ -46,9 +45,7 @@ const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums, header, route })
             responsive={responsive}
           >
             {albums.map(a => (
-              <Suspense fallback={<h1>loaging</h1>}>
-                <Album key={a.album_id} name={a.title} id={a.album_id} artistName={a.artist} image={a.image_url} />
-              </Suspense>
+              <Album key={a.album_id} name={a.title} id={a.album_id} artistName={a.artist} image={a.image_url} />
             ))}
           </Carousel>
         </div>
