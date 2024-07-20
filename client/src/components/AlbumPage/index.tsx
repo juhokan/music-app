@@ -67,6 +67,26 @@ const AlbumPage: React.FC = () => {
     const n = await getAlbums()
     setAlbums(n)
   }
+  const rating = () => {
+    const ratingComponents = []
+    for (let i = 1; i <= 10; i++) {
+      if (current?.rating && i === current.rating) {
+        ratingComponents.push(
+          <div className='rating-component-active'>
+            <h3 className='rating-text-active'>{i}</h3>
+          </div>)
+      }
+      else {
+        ratingComponents.push(
+          <div className='rating-component-inactive'>
+            <h3 className='rating-text-inactive'>{i}</h3>
+          </div>
+        )
+      }
+
+    }
+    return <div className='rating-component'>{ratingComponents}</div>
+  }
 
   return (
     <div className='album-page-container'>
@@ -76,6 +96,7 @@ const AlbumPage: React.FC = () => {
           src={album?.images[0].url} 
           alt={`${album?.name} - ${album?.artists[0].name}`} />
       </div>
+      {rating()}
       <div className='album-page-text-container'>
         <h1 className='album-page-title'>{album?.name}</h1>
         <h2 className='album-page-artist'>{album?.artists.map(a => a.name).join(', ')}</h2>
