@@ -93,3 +93,8 @@ export interface SpotifyAlbumData {
   readonly genres: string[]
   readonly label: string
 }
+
+export interface SavedSpotifyAlbum {
+  readonly added_at: Date
+  readonly album: SpotifyAlbumData
+}

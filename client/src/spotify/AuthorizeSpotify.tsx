@@ -40,7 +40,7 @@ const AuthorizeSpotify: React.FC = () => {
   }
 
   return (
-    <Link className='validate-token' to={authUrl()}>Validate Token</Link>
+    <Link className='validate-token' to={authUrl()}>Connect Spotify</Link>
   )
 }
 

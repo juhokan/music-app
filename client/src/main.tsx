@@ -5,11 +5,10 @@ import './index.css'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { PrimeReactProvider } from 'primereact/api'
 import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css'
-import 'primereact/resources/primereact.min.css'
 import 'primeflex/primeflex.css'
 
 const value = {
-  ripple: true
+  ripple: false
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

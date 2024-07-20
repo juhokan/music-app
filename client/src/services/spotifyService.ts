@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { CLIENT_ID, CLIENT_SECRET } from '../config'
-import { SpotifyAlbumData } from '../types'
+import { SavedSpotifyAlbum, SpotifyAlbumData } from '../types'
 import { SpotifyToken } from '../types'
 import { SpotifyUserData } from '../types'
 
@@ -55,7 +55,7 @@ export const getNewReleases = async (token: string, limit: number): Promise<Spot
 }
 
 export const getUsersAlbums =
-  async (token: string, limit: number, offset: number): Promise<SpotifyAlbumData[] | null> => {
+  async (token: string, limit: number, offset: number): Promise<SavedSpotifyAlbum[] | null> => {
     try {
       const { data } = await axios.get(`https://api.spotify.com/v1/me/albums`, {
         headers: {
@@ -66,7 +66,7 @@ export const getUsersAlbums =
           offset: offset
         }
       })
-      return data.items as SpotifyAlbumData[]
+      return data.items as SavedSpotifyAlbum[]
     } catch (error) {
       console.error("Error searching new releases:", error)
       throw error
