@@ -62,11 +62,9 @@ const Menubar: React.FC = () => {
           )
         ) : (
           <div className='search-container'>
-            {pathname !== AppRoute.Search && (
-              <form onSubmit={handleSubmit}>
-                <input type='text' className='search-hover' alt='search input' />
-              </form>
-            )}
+            <form onSubmit={handleSubmit}>
+              <input type='text' className='search-hover' aria-label='search input' />
+            </form>
           </div>
         )}
 
