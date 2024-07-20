@@ -6,9 +6,10 @@ interface AlbumProps {
   image: string;
   name: string
   artistName: string
+  rating: number | null
 }
 
-const Album: React.FC<AlbumProps> = ({ id, image, name, artistName }) => {
+const Album: React.FC<AlbumProps> = ({ id, image, name, artistName, rating }) => {
   const navigate = useNavigate()
 
   const handleAlbumClick = () => {
@@ -18,6 +19,10 @@ const Album: React.FC<AlbumProps> = ({ id, image, name, artistName }) => {
   return (
     <div onClick={handleAlbumClick} className='album-card'>
       <div className='album-card-cover'>
+        {rating && 
+        <div className='album-card-rating'>
+          <h3>{rating}</h3>
+        </div>}
         <img src={image} alt='album'className='album-card-cover'/>
       </div>
       <div className='album-card-title-container'>
