@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { AlbumsContext, SpotifyContext, UserContext } from '../../context'
 import { SpotifyAlbumData } from '../../types'
 import { getAlbum } from '../../services/spotifyService'
-import { deleteAlbum, getAlbums, postAlbum } from '../../services/albumService'
+import { deleteAlbum, getAlbums, postAlbum, putAlbum } from '../../services/albumService'
 import { transformSpotifyAlbum } from '../../utils/transformer'
 import { UserAlbumData } from '../../types'
 import Tracklist from './Tracklist'
@@ -18,6 +18,7 @@ const AlbumPage: React.FC = () => {
   const [album, setAlbum] = React.useState<SpotifyAlbumData | null>(null)
   const { tokens } = React.useContext(SpotifyContext)
   const [current, setCurrent] = React.useState<UserAlbumData | null>(null)
+  const [loading, setLoading] = React.useState<boolean>(false)
 
   useEffect(() => {
     const fetchAlbum = async () => {
@@ -39,24 +40,56 @@ const AlbumPage: React.FC = () => {
 
   const getSpotifyAlbum = async (): Promise<SpotifyAlbumData | null> => {
     if (tokens?.token && albumId) {
+      setLoading(true)
       const s = await getAlbum(tokens.token, albumId)
+      setLoading(false)
       return s
     }
     return null
   }
 
-  const handlePostAlbum = async () => {
+  const handlePostAlbum = async (rating: number | null) => {
     if (album && user && user.token) {
-      const a = transformSpotifyAlbum(album, null, false)
+      setLoading(true)
+      const a = transformSpotifyAlbum(album, rating, false)
       await postAlbum(a, user.token)
       fetchUserAlbums()
+      setLoading(false)
+    }
+  }
+
+  const handlePutAlbum = async (rating: number) => {
+    if (current && album && user && user.token) {
+      setLoading(true)
+      const a = transformSpotifyAlbum(album, rating, false)
+      await putAlbum(a, user.token, current.id)
+      fetchUserAlbums()
+      setLoading(false)
     }
   }
 
   const handleDeleteAlbum = async () => {
     if (album && user && user.token && current) {
+      setLoading(true)
       await deleteAlbum(user.token, current.id)
       fetchUserAlbums()
+      setLoading(false)
+    }
+  }
+
+  const handleRating = (rating: number) => {
+    if (user && user.token && !loading) {
+      if (current) {
+        if (current.rating !== rating) {
+          handlePutAlbum(rating)
+        }
+        else {
+          handleDeleteAlbum()
+        }
+      }
+      else {
+        handlePostAlbum(rating)
+      }
     }
   }
 
@@ -75,13 +108,13 @@ const AlbumPage: React.FC = () => {
     for (let i = 1; i <= 10; i++) {
       if (current?.rating && i === current.rating) {
         ratingComponents.push(
-          <div className='rating-component-active'>
+          <div key={i} className='rating-component-active' onClick={() => handleRating(i)}>
             <h3 className='rating-text-active'>{i}</h3>
           </div>)
       }
       else {
         ratingComponents.push(
-          <div className='rating-component-inactive'>
+          <div key={i} className='rating-component-inactive' onClick={() => handleRating(i)}>
             <h3 className='rating-text-inactive'>{i}</h3>
           </div>
         )
@@ -109,9 +142,6 @@ const AlbumPage: React.FC = () => {
             <h3>{album?.genres.join(', ')}</h3>
           </div>
           {album?.tracks && <Tracklist tracklist={album?.tracks}/>}
-          {current && <div>added</div>}
-          <button onClick={handlePostAlbum} >add album</button>
-          {current && <button onClick={handleDeleteAlbum} >remove album</button>}
         </div>) 
         : 
         (<AlbumSkeleton />)}

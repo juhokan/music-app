@@ -134,10 +134,10 @@
 
 .rating-component-active {
   width: 40px !important;
-  color: var(--text-color);
 }
 
 .rating-text-active {
   font-size: 32px;
   text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+  color: var(--text-color)
 }
