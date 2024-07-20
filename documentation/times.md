@@ -1,5 +1,3 @@
-#Specific time tracking
-
 ## Previous Project (music-review-app)
 | Date       | time (hours)   | topic          |
 |------------|----------------|----------------|

@@ -7,17 +7,17 @@
 4. Server task list
 
 ## Introduction
-Music app is a full stack web application built for the Full Stack Open course as a course project. The client is built with Vite and TypeScript, and the server is built with Node.js using MongoDB as the database.
+Music App is a full stack web application built for the Full Stack Open course as a course project. The client is built with Vite and TypeScript, and the server is built with Node.js using MongoDB. The client uses the Spotify API to fetch album data. To use the application, you need to have a Spotify account.
 
 ## Time Tracking
-This project builds upon a previous project located in the `music-review-app` repository. The previous project was similar in structure but used Strapi as a CMS. 
+This project builds upon a previous project located in the `music-review-app` repository. The previous project was similar in structure but used Strapi as a CMS. A lot of the basic structure of this project was figured out and created for music-review-app. Daily time tracking for both projects can be found [here](https://github.com/juhokan/music-app/blob/main/documentation/times.md).
 
 
 ### Total Time Spent
 | Project    | Total (hours) |
 |------------|----------------|
-| music-review-app | 80             |
-| Current Project  | 78              |
+| Previous project (music-review-app) | 80             |
+| Current Project (music-app)  | 78              |
 | Total           | 158             |
 
 ## Client Task List
