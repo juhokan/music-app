@@ -11,8 +11,8 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV="production"
-ENV VITE_CALLBACK_URL=https://music-client.fly.dev
-ENV VITE_SERVER_URL=https://music-app-server.fly.dev
+ENV VITE_CALLBACK_URL=https://musicapp.fi
+ENV VITE_SERVER_URL=https://server.musicapp.fi
 
 ARG CLIENT_ID
 ARG CLIENT_SECRET

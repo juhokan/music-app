@@ -1,0 +1,143 @@
+.album-page-container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-page-cover-container {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  max-height: 640px;
+  position: relative;
+}
+
+.album-page-cover-skeleton {
+  display: block;
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+
+.album-page-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 5);
+}
+
+.album-page-text-container {
+  width: 100%;
+  max-width: 640px;
+  margin: 4px;
+  text-align: left;
+  border-radius: 4px;
+}
+
+.album-page-skeleton {
+  background-color: #A6A6A6;
+}
+
+.tracklist-container {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+}
+
+.track-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  min-height: 32px;
+  margin-block: 8px;
+  border-radius: 4px;
+}
+
+
+.track-name {
+  color: var(--text-color);
+  padding-right: 8px;
+  margin: 0;
+}
+
+.track-duration {
+  margin: 0;
+  color: var(--secondary-text-color);
+}
+
+.track-audio-player-container {
+  display: flex;
+  align-items: center;
+}
+
+.track-play-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  & :hover > * {
+    color: var(--secondary-text-color);
+  }
+  padding: 8px;
+  padding-top: 10px;
+}
+
+.track-progress-container {
+  width: 100px;
+  height: 4px;
+  background-color: #333;
+  overflow: hidden;
+}
+
+.track-progress {
+  height: 100%;
+  background-color: white;
+}
+
+.rating-component {
+  justify-content: space-between;
+  width: 100%;
+  max-width: 640px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  & > * {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.rating-component-inactive {
+  color: var(--secondary-text-color);
+  width: 40px !important;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.rating-component-inactive:hover {
+  transform: scale(1.6);
+  & > * {
+    color: var(--text-color);
+  }
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+.rating-text-inactive {
+  font-size: 20px;
+}
+
+.rating-component-active {
+  width: 40px !important;
+}
+
+.rating-text-active {
+  font-size: 32px;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+  color: var(--text-color)
+}

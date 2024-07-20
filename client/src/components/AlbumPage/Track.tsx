@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react'
 import { SpotifyTrackObject } from '../../types'
-import play from '../../assets/play.png'
-import pause from '../../assets/pause.png'
+import { MdPlayArrow } from "react-icons/md"
+import { MdPause } from "react-icons/md"
 import { AudioContext } from '../../context'
 
 interface TrackProps {
@@ -98,11 +98,11 @@ const Track: React.FC<TrackProps> = ({ track, index }) => {
         )}
         {track.preview_url && (isPlaying && id === track.id ? (
           <div className='track-play-container' onClick={stopAudio}>
-            <img src={pause} alt='Pause Icon' className='icon' />
+            <MdPause className='track-play-icon' size={'24px'}/>
           </div>
         ) : (
           <div className='track-play-container' onClick={() => {track.preview_url && startAudio(track.preview_url)}}>
-            <img src={play} alt='Play Icon' className='icon' />
+            <MdPlayArrow className='track-play-icon' size={'24px'}/>
           </div>
         ))}
       </div>
