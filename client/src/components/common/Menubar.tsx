@@ -56,15 +56,15 @@ const Menubar: React.FC = () => {
       <div className='menubar-link-container'>
         {isMobile ? (
           pathname !== AppRoute.Search && (
-            <a className='search-mobile' href={AppRoute.Search}>
-              <MdOutlineSearch size='16px' />
+            <a className='search-mobile' href={AppRoute.Search} >
+              <MdOutlineSearch size='16px' aria-label='search link' />
             </a>
           )
         ) : (
           <div className='search-container'>
             {pathname !== AppRoute.Search && (
               <form onSubmit={handleSubmit}>
-                <input type='text' className='search-hover' />
+                <input type='text' className='search-hover' alt='search input' />
               </form>
             )}
           </div>

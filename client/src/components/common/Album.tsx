@@ -21,7 +21,7 @@ const Album: React.FC<AlbumProps> = ({ id, image, name, artistName, rating }) =>
       <div className='album-card-cover'>
         {rating && 
         <div className='album-card-rating'>
-          <h3>{rating}</h3>
+          <p>{rating}</p>
         </div>}
         <img src={image} alt='album'className='album-card-cover'/>
       </div>
