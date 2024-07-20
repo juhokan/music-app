@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <HelmetProvider>
       <Helmet>
         <title>Music App</title>
-        <meta name='Music App' content='Review your music'/>
+        <meta name='description' content='Review your music'/>
       </Helmet>
       <PrimeReactProvider value={value}>
         <App />
