@@ -16,6 +16,7 @@ const AlbumGrid: React.FC<AlbumGridProps> = ({ albums }) => {
             image={a.image_url}
             name={a.title}
             artistName={a.artist}
+            rating={a.rating}
           />
         </div>
       ))}
