@@ -67,6 +67,7 @@ const AlbumPage: React.FC = () => {
     const n = await getAlbums()
     setAlbums(n)
   }
+  
   const rating = () => {
     const ratingComponents = []
     for (let i = 1; i <= 10; i++) {
@@ -91,7 +92,7 @@ const AlbumPage: React.FC = () => {
   return (
     <div className='album-page-container'>
       <div className='album-page-cover-container'>
-        <img 
+        <img
           className='album-page-cover' 
           src={album?.images[0].url} 
           alt={`${album?.name} - ${album?.artists[0].name}`} />
