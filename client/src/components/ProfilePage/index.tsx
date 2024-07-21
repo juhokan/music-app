@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import { Skeleton } from 'primereact/skeleton'
 import AuthorizeSpotify from '../../spotify/AuthorizeSpotify'
+import { Skeleton } from 'primereact/skeleton'
 import { AlbumsContext, SpotifyContext, UserContext } from '../../context'
 import { AlbumData, SavedSpotifyAlbum, UserAlbumData } from '../../types'
 import AlbumsCarousel from '../common/AlbumsCarousel'
 import { AppRoute } from '../../routes'
 import { getUsersAlbums } from '../../services/spotifyService'
 import { transformSpotifyAlbum } from '../../utils/transformer'
+import ProfileStats from './ProfileStats'
 
 const ProfilePage: React.FC = () => {
   const { user } = React.useContext(UserContext)
@@ -40,14 +41,13 @@ const ProfilePage: React.FC = () => {
       const t = transformSpotifyAlbum(a.album, null, false)
       l.push(t)
     })
-    console.log(l)
-    
     setSavedAlbums(l)
   }
 
   return (
     <>
       <AuthorizeSpotify />
+      {usersAlbums && <ProfileStats albums={usersAlbums}/>}
       <AlbumsCarousel albums={usersAlbums} header='Recents' route={AppRoute.Search} />
       {savedAlbums 
         ? 
