@@ -1,0 +1,10 @@
+.p-button {
+  background: none !important;
+  border: 1px solid var(--secondary-text-color) !important;
+  color: var(--secondary-text-color);
+  &:hover {
+    color: var(--text-color);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--text-color);
+  }
+}

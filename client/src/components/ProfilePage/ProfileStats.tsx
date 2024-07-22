@@ -72,8 +72,7 @@ const ProfileStats: React.FC<ProfileStatsProps> = ({ albums }) => {
 
   return (
     <>
-      {ratingDict && 
-      <div className='rating-bar-data-container'>
+      {ratingDict && <div className='rating-bar-data-container'>
         { hoveredRating ? 
           <h2 className='rating-bar-data-header'>
             {hoveredCount} {hoveredRating}'s ({Math.floor((hoveredCount / allRatings) * 100)}%)</h2> 

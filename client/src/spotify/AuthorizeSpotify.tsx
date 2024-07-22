@@ -1,6 +1,7 @@
 import React from 'react'
 import { CALLBACK_URL, CLIENT_ID } from './../config'
 import { Link } from 'react-router-dom'
+import { Button } from 'primereact/button'
 
 const AuthorizeSpotify: React.FC = () => {
   const authUrl = () => {
@@ -40,7 +41,9 @@ const AuthorizeSpotify: React.FC = () => {
   }
 
   return (
-    <Link className='validate-token' to={authUrl()}>Connect Spotify</Link>
+    <Link className='validate-token' to={authUrl()}>
+      <Button>Connect Spotify</Button>
+    </Link>
   )
 }
 

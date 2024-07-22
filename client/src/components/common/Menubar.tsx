@@ -1,19 +1,23 @@
 import React, { useEffect } from "react"
 import { AppRoute } from "../../routes"
-import { SearchContext, UserContext } from "../../context"
+import { SearchContext, SpotifyContext, UserContext } from "../../context"
 import { useLocation, useNavigate } from 'react-router-dom'
-import { MdOutlineSearch } from "react-icons/md"
-import profile from '../../assets/profile.png'
+import search from '../../assets/search.svg'
+import { IoPersonSharp } from "react-icons/io5"
+import { getMe } from "../../services/spotifyService"
+import { SpotifyUserData } from "../../types"
 
 
 
 const Menubar: React.FC = () => {
 
   const { user } = React.useContext(UserContext)
+  const { tokens } = React.useContext(SpotifyContext) 
   const { setInput } = React.useContext(SearchContext)
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
+  const [spotiyUser, setSpotiyUser] = React.useState<SpotifyUserData | null>(null)
   const [isMobile, setMobile] = React.useState(false)
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
 
   const MAX_WIDTH = 768
 
@@ -32,6 +36,17 @@ const Menubar: React.FC = () => {
     }
 
   }, [user])
+
+  useEffect(() => {
+    fetchSpotifyProfile()
+  }, [user, tokens])
+
+  const fetchSpotifyProfile = async () => {
+    if (user && tokens && tokens.token) {
+      const u = await getMe(tokens.token)
+      setSpotiyUser(u)
+    }
+  }
 
 
   const headerImage = () => {
@@ -57,7 +72,7 @@ const Menubar: React.FC = () => {
         {isMobile ? (
           pathname !== AppRoute.Search && (
             <a className='search-mobile' href={AppRoute.Search} >
-              <MdOutlineSearch size='16px' aria-label='search link' />
+              <img src={search} style={{height: '16px', width: '16px'}} />
             </a>
           )
         ) : (
@@ -82,9 +97,17 @@ const Menubar: React.FC = () => {
   const profileLink = () => {
     return (
       user ? (
-        <a className='menubar-profile-link' href={AppRoute.Profile}>
-          <img src={profile} alt='Profile Icon' className='icon' />
-        </a>
+        (spotiyUser ? 
+          <a className='menubar-profile-link' href={AppRoute.Profile}>
+            <img className='menubar-profile-image' src={spotiyUser.images[0].url} alt='profile image' />
+          </a> 
+          :
+          <a className='menubar-profile-link' href={AppRoute.Profile}>
+            <div className='menubar-profile-image'>
+              <IoPersonSharp size={'12px'}/>
+            </div>
+          </a> 
+        ) 
       ) : (
         <div onClick={handleNavigate}>
           <h3>Log In</h3>
