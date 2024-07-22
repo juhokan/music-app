@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import './App.css'
+import './theme/theme.css'
 import { UserAlbumData } from './types'
 import { getAlbums } from './services/albumService'
 import { AlbumsContext, SearchContext, SpotifyContext, UserContext, AudioContext } from './context'

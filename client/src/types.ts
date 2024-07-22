@@ -33,11 +33,6 @@ export interface SpotifyToken {
   readonly refresh: string | null
 }
 
-export interface SpotifyUserData {
-  readonly id: string
-  readonly images: SpotifyImageObject
-}
-
 export interface SpotifyImageObject {
   readonly url: string
   readonly height: number
@@ -92,4 +87,16 @@ export interface SpotifyAlbumData {
   readonly copyrights: SpotifyCopyrightObject
   readonly genres: string[]
   readonly label: string
+}
+
+export interface SavedSpotifyAlbum {
+  readonly added_at: Date
+  readonly album: SpotifyAlbumData
+}
+
+export interface SpotifyUserData {
+  readonly id: string
+  readonly display_name: string
+  readonly external_urls: SpotifyLinkObject
+  readonly images: SpotifyImageObject[]
 }
