@@ -10,6 +10,7 @@ import Menubar from './common/Menubar'
 import ProfilePage from './ProfilePage'
 import Footer from './common/Footer'
 import LoginForm from './LoginPage/LoginForm'
+import RatingPage from './ProfilePage/RatingPage'
 
 const AppContainer: React.FC = () => {
   const { input } = React.useContext(SearchContext)
@@ -34,6 +35,9 @@ const AppContainer: React.FC = () => {
           </Route>
           <Route path={AppRoute.Login}>
             <Route index element={<LoginForm />} />
+          </Route>
+          <Route path={AppRoute.UserRatings}>
+            <Route index element={<RatingPage />} />
           </Route>
         </Routes>
       </div>

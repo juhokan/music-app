@@ -81,7 +81,7 @@ const ProfilePage: React.FC = () => {
           </div>
           {usersAlbums && <ProfileStats albums={usersAlbums}/>}
         </div>
-        <AlbumsCarousel albums={usersAlbums} header='Recents' route={AppRoute.Search} />
+        <AlbumsCarousel albums={usersAlbums} header='Ratings' route={AppRoute.UserRatings} />
         {tokens && 
         (
           savedAlbums 

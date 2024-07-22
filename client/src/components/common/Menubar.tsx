@@ -99,7 +99,7 @@ const Menubar: React.FC = () => {
       user ? (
         (spotiyUser ? 
           <a className='menubar-profile-link' href={AppRoute.Profile}>
-            <img className='menubar-profile-image' src={spotiyUser.images[0].url} alt='profile image' />
+            <img className='menubar-profile-image' src={spotiyUser.images[0]?.url} alt='profile image' />
           </a> 
           :
           <a className='menubar-profile-link' href={AppRoute.Profile}>

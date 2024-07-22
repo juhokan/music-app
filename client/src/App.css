@@ -120,6 +120,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  .album-grid-container {
+    gap: 0px;
+    justify-content: center;
+  }
+}
+
 .footer-container {
   display: flex;
   align-items: center;
