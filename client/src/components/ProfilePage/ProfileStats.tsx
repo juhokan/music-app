@@ -13,7 +13,7 @@ const ProfileStats: React.FC<ProfileStatsProps> = ({ albums }) => {
   const [ratingDict, setRatingDict] = React.useState<{ [key: number]: number } | null>(null)
   const [largestValue, setLargestValue] = React.useState<number>(0)
   const allRatings = albums.length
-  const MAX_HEIGHT = 62
+  const MAX_HEIGHT = 100
 
   useEffect(() => {
     albumRatingStats()
@@ -53,16 +53,17 @@ const ProfileStats: React.FC<ProfileStatsProps> = ({ albums }) => {
     const height = (count / allRatings) * MAX_HEIGHT * multiplicationFactor
 
     return (
-      <div>
-        <div className='rating-bar' style={{ height: `${height + 2}px` }}
-          onMouseEnter={() => { 
-            setHoveredRating(rating) 
-            setHoveredCount(count)
-          }}
-          onMouseLeave={() => {
-            setHoveredRating(null) 
-            setHoveredCount(0)
-          }}>
+      <div className='rating-bar-container'
+        onMouseEnter={() => { 
+          setHoveredRating(rating) 
+          setHoveredCount(count)
+        }}
+        onMouseLeave={() => {
+          setHoveredRating(null) 
+          setHoveredCount(0)
+        }}
+      >
+        <div className='rating-bar' style={{ height: `${height + 5}%` }}>
         </div>
 
       </div>
@@ -70,22 +71,27 @@ const ProfileStats: React.FC<ProfileStatsProps> = ({ albums }) => {
   }
 
   return (
-    <div className='rating-bar-data-container'>
-      {hoveredRating ? 
-        <h2 className='rating-bar-data-header'>
-          {hoveredCount} {hoveredRating}'s ({Math.floor((hoveredCount / allRatings) * 100)}%)</h2> 
-        : 
-        <h2 className='rating-bar-data-header'>Albums: {albums.length}</h2>}
-      <div className='rating-bar-container'>
-        <h3 className='rating-bar-number'>1</h3>
-        {ratingDict && Object.entries(ratingDict).map(([rating, count]) => (
-          <div key={rating}>
-            {ratingBar(parseInt(rating), count)}
-          </div>
-        ))}
-        <h3 className='rating-bar-number'>10</h3>
-      </div>
-    </div>
+    <>
+      {ratingDict && 
+      <div className='rating-bar-data-container'>
+        { hoveredRating ? 
+          <h2 className='rating-bar-data-header'>
+            {hoveredCount} {hoveredRating}'s ({Math.floor((hoveredCount / allRatings) * 100)}%)</h2> 
+          : 
+          <h2 className='rating-bar-data-header'>
+          Ratings: {Object.values(ratingDict).reduce((sum, value) => sum + value, 0)}
+          </h2>}
+        <div className='rating-bar-container'>
+          <h3 className='rating-bar-number'>1</h3>
+          {ratingDict && Object.entries(ratingDict).map(([rating, count]) => (
+            <div key={rating}>
+              {ratingBar(parseInt(rating), count)}
+            </div>
+          ))}
+          <h3 className='rating-bar-number'>10</h3>
+        </div>
+      </div>}
+    </>
   )
 }
 

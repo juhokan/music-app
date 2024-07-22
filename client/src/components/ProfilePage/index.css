@@ -1,11 +1,8 @@
 .rating-bar {
-  margin: 1px;
+  margin-inline: 1px;
+  margin-block: 4px;
   background-color: #bebebe;
   width: 20px;
-}
-
-.rating-bar:hover {
-  background-color: #ffffff;
 }
 
 .rating-bar-data-container {
@@ -17,7 +14,6 @@
 }
 .rating-bar-data-header {
   display: flex;
-  padding: 4px;
 }
 
 .rating-bar-container {
@@ -25,12 +21,17 @@
   align-items: flex-end;
   justify-content: center;
   max-width: 500px;
+  height: 64px;
+}
+
+.rating-bar-container:hover > .rating-bar {
+  background-color: var(--text-color);
 }
 
 .rating-bar-number {
   padding-top: 8px;
   display: flex;
   align-items: flex-end;
-  margin: 0;
+  margin: 0px;
   padding-inline: 8px;
 }
