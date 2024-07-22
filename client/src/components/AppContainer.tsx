@@ -11,6 +11,7 @@ import ProfilePage from './ProfilePage'
 import Footer from './common/Footer'
 import LoginForm from './LoginPage/LoginForm'
 import RatingPage from './ProfilePage/RatingPage'
+import RecentsPage from './RecentsPage'
 
 const AppContainer: React.FC = () => {
   const { input } = React.useContext(SearchContext)
@@ -29,6 +30,9 @@ const AppContainer: React.FC = () => {
           </Route>
           <Route path={AppRoute.Search}>
             <Route index element={<SearchPage inputValue={input} />} />
+          </Route>
+          <Route path={AppRoute.Recent}>
+            <Route index element={<RecentsPage />} />
           </Route>
           <Route path={AppRoute.Profile}>
             <Route index element={<ProfilePage />} />

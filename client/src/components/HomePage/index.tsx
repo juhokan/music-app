@@ -44,7 +44,7 @@ const LandingPage: React.FC = () => {
     <>
       {newest 
         ?
-        (<AlbumsCarousel albums={newest} header='Recents' route={AppRoute.Search}/>)
+        (<AlbumsCarousel albums={newest} header='Recents' route={AppRoute.Recent}/>)
         :
         (<Skeleton height='400px' width='100%' className='m-2'></Skeleton>)}
       {tokens && (
