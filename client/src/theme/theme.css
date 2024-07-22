@@ -1,4 +1,4 @@
-.p-button {
+.p-button, .p-dropdown {
   background: none !important;
   border: 1px solid var(--secondary-text-color) !important;
   color: var(--secondary-text-color);
@@ -7,4 +7,33 @@
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
     border: 1px solid var(--text-color);
   }
+  &:focus-visible {
+    border-color: none !important;
+  }
+}
+
+.p-inputwrapper-focus {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.p-dropdown-item.p-highlight.p-focus {
+  background: var(--text-color) !important;
+}
+
+.p-dropdown-item.p-highlight {
+  background: var(--text-color) !important;
+}
+
+.p-dropdown-item {
+  background: black !important;
+}
+.p-dropdown-items {
+  background: none !important;
+}
+.p-dropdown-item:hover {
+  background: rgb(35, 35, 35) !important;
+}
+.p-dropdown-panel {
+  background: black !important;
+  border: 1px solid black !important;
 }
