@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react'
 import AlbumGrid from '../../common/AlbumGrid'
 import { UserAlbumData } from '../../../types'
@@ -43,10 +42,18 @@ const RatingPage: React.FC = () => {
           setFilteredAlbums([...usersAlbums].reverse())
           break
         case Filters.Highest:
-          setFilteredAlbums([...usersAlbums].sort((a, b) => b.rating - a.rating))
+          setFilteredAlbums([...usersAlbums].sort((a, b) => {
+            const ratingA = a.rating ?? -Infinity
+            const ratingB = b.rating ?? -Infinity
+            return ratingB - ratingA
+          }))
           break
         case Filters.Lowest:
-          setFilteredAlbums([...usersAlbums].sort((a, b) => a.rating - b.rating))
+          setFilteredAlbums([...usersAlbums].sort((a, b) => {
+            const ratingA = a.rating ?? Infinity
+            const ratingB = b.rating ?? Infinity
+            return ratingA - ratingB
+          }))
           break
         default:
           break
