@@ -24,7 +24,8 @@ const RecentsPage = () => {
 
   useEffect(() => {
     if (albums) {
-      setFilteredAlbums(albums.reverse())
+      const sortedAlbums = [...albums].reverse()
+      setFilteredAlbums(sortedAlbums)
     }
   }, [albums])
 
