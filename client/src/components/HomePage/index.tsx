@@ -9,7 +9,7 @@ import { getNewReleases } from '../../services/spotifyService'
 import { AlbumData } from '../../types'
 import { transformSpotifyAlbum } from '../../utils/transformer'
 
-const LandingPage: React.FC = () => {
+const HomePage: React.FC = () => {
   const { albums } = React.useContext(AlbumsContext)
   const { tokens } = React.useContext(SpotifyContext)
   const [newReleases, setNewReleases] = React.useState<SpotifyAlbumData[] | null>(null)
@@ -64,4 +64,4 @@ const LandingPage: React.FC = () => {
   )
 }
 
-export default LandingPage
+export default HomePage

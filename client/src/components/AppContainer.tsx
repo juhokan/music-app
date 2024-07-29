@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { AppRoute } from '../routes'
 import { SearchContext } from '../context'
-import LandingPage from './HomePage'
+import HomePage from './HomePage'
 import Callback from '../spotify/Callback'
 import AlbumPage from './AlbumPage'
 import SearchPage from './SearchPage'
@@ -22,7 +22,7 @@ const AppContainer: React.FC = () => {
       <div id='main'>
         <Routes>
           <Route path={AppRoute.Home}>
-            <Route index element={<LandingPage />} />
+            <Route index element={<HomePage />} />
             <Route path=':albumId' element={<AlbumPage />} />
           </Route>
           <Route path={AppRoute.Callback}>
