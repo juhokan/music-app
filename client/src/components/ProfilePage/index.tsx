@@ -86,7 +86,7 @@ const ProfilePage: React.FC = () => {
         (
           savedAlbums 
             ? 
-            (<AlbumsCarousel albums={savedAlbums} header='Saved Albums' route={AppRoute.Search} />) 
+            (<AlbumsCarousel albums={savedAlbums} header='Saved Albums' route={null} />) 
             : 
             ( <div>
               <div className='header-link-container'>

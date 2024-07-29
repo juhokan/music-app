@@ -9,7 +9,7 @@ import HeaderLink from './HeaderLink'
 interface AlbumCarouselProps {
   readonly albums: AlbumData[] | UserAlbumData[] | null;
   readonly header: string
-  readonly route: AppRoute
+  readonly route: AppRoute | null
 }
 
 const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums, header, route }) => {
@@ -36,7 +36,12 @@ const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums, header, route })
     <>
       {albums && (
         <div >
-          <HeaderLink header={header} route={route}/>
+          {route ? <HeaderLink header={header} route={route}/> 
+            : 
+            <div className='header-link-container'>
+              <h1 className='header-link-title'>{header}</h1>
+            </div>
+          }
           <Carousel
             className='album-carousel carousel-container'
             partialVisible={true}
