@@ -14,7 +14,7 @@ interface AlbumSearchProps {
 const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
   const { tokens } = React.useContext(SpotifyContext)
   const [albums, setAlbums] = React.useState<SpotifyAlbumData[] | null>(null)
-  const [pageInput, setPageInput] = React.useState('')
+  const [pageInput, setPageInput] = React.useState<string>('')
 
   useEffect(() => {
 
@@ -31,7 +31,7 @@ const SearchPage: React.FC<AlbumSearchProps> = ({ inputValue }) => {
         setAlbums(i)
       }
     } catch (error) {
-      console.error("Error fetching albums:", error)
+      console.error(error)
     }
   }
 
