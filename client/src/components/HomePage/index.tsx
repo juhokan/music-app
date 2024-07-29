@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
       {tokens && (
         newReleases
           ? 
-          (<AlbumsCarousel albums={transformed} header='New Releases' route={AppRoute.Search}/>) 
+          (<AlbumsCarousel albums={transformed} header='New Releases' route={AppRoute.NewReleases}/>) 
           : 
           (<div>
             <div className='header-link-container'>
