@@ -12,6 +12,10 @@
   }
 }
 
+.p-dropdown-label.p-inputtext {
+  border: none !important;
+}
+
 .p-inputwrapper-focus {
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }

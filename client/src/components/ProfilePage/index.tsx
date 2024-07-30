@@ -82,6 +82,10 @@ const ProfilePage: React.FC = () => {
           {usersAlbums && <ProfileStats albums={usersAlbums}/>}
         </div>
         <AlbumsCarousel albums={usersAlbums} header='Ratings' route={AppRoute.UserRatings} />
+        {usersAlbums && <AlbumsCarousel 
+          albums={usersAlbums.filter(a => a.favourite)} 
+          header='Favourites' 
+          route={AppRoute.UserFavourites} />}
         {tokens && 
         (
           savedAlbums 
