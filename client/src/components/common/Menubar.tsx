@@ -48,7 +48,7 @@ const Menubar: React.FC = () => {
   const headerImage = () => {
     return (
       <a href={AppRoute.Home} className='menubar-image'>
-        <h4>music review app</h4>
+        <h4>Music App</h4>
       </a>
     )
   }
