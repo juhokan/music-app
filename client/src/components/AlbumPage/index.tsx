@@ -9,6 +9,8 @@ import { transformSpotifyAlbum } from '../../utils/transformer'
 import { UserAlbumData } from '../../types'
 import Tracklist from './Tracklist'
 import AlbumSkeleton from './AlbumSkeleton'
+import listened from '../../assets/listened.svg'
+import favourite from '../../assets/favourite.svg'
 import './index.css'
 
 const AlbumPage: React.FC = () => {
@@ -58,10 +60,11 @@ const AlbumPage: React.FC = () => {
     }
   }
 
-  const handlePutAlbum = async (rating: number) => {
+  const handlePutAlbum = async (rating: number | null, favourite: boolean | null) => {
+    const f = favourite ? favourite : false
     if (current && album && user && user.token) {
       setLoading(true)
-      const a = transformSpotifyAlbum(album, rating, false)
+      const a = transformSpotifyAlbum(album, rating, f)
       await putAlbum(a, user.token, current.id)
       fetchUserAlbums()
       setLoading(false)
@@ -81,7 +84,7 @@ const AlbumPage: React.FC = () => {
     if (user && user.token && !loading) {
       if (current) {
         if (current.rating !== rating) {
-          handlePutAlbum(rating)
+          handlePutAlbum(rating, current.favourite)
         }
         else {
           handleDeleteAlbum()
@@ -90,6 +93,23 @@ const AlbumPage: React.FC = () => {
       else {
         handlePostAlbum(rating)
       }
+    }
+  }
+
+  const handleListen = () => {
+    if (user && user.token && !loading) {
+      if (current) {
+        handleDeleteAlbum()
+      }
+      else {
+        handlePostAlbum(null)
+      }
+    }
+  }
+
+  const handleFavourite = () => {
+    if (current && user && user.token && !loading) {
+      handlePutAlbum(current.rating, !current.favourite)
     }
   }
 
@@ -135,11 +155,34 @@ const AlbumPage: React.FC = () => {
               alt={`${album?.name} - ${album?.artists[0].name}`} />
           </div>
           {rating()}
-          <div className='album-page-text-container'>
-            <h1 className='album-page-title'>{album?.name}</h1>
-            <h2 className='album-page-artist'>{album?.artists.map(a => a.name).join(', ')}</h2>
-            <h3>{album?.release_date.split('-')[0]} - {album?.label}</h3>
-            <h3>{album?.genres.join(', ')}</h3>
+          <div className='album-page-data-container'>
+            <div className='album-page-text-container'>
+              <h1 className='album-page-title'>{album?.name}</h1>
+              <h2 className='album-page-artist'>{album?.artists.map(a => a.name).join(', ')}</h2>
+              <h3>{album?.release_date.split('-')[0]} - {album?.label}</h3>
+              <h3>{album?.genres.join(', ')}</h3>
+            </div>
+
+            <div className='album-page-button-container'>
+              {current ? 
+                <div className='album-page-button-active' onClick={handleListen}>
+                  <img className='album-page-button-icon listened' src={listened} alt='listened' />
+                </div> 
+                : 
+                <div className='album-page-button-inactive' onClick={handleListen}>
+                  <img className='album-page-button-icon listened' src={listened} alt='listened' />
+                </div>}
+
+              {current && current.favourite 
+                ? 
+                <div className='album-page-button-active' onClick={handleFavourite}>
+                  <img className='album-page-button-icon favourite' src={favourite} alt='listened' />
+                </div> 
+                : 
+                <div className='album-page-button-inactive' onClick={handleFavourite}>
+                  <img className='album-page-button-icon favourite' src={favourite} alt='listened' />
+                </div>}
+            </div>
           </div>
           {album?.tracks && <Tracklist tracklist={album?.tracks}/>}
         </div>) 
