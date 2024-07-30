@@ -1,4 +1,4 @@
-.p-button, .p-dropdown {
+.p-button, .p-dropdown, .p-inputtext {
   background: none !important;
   border: 1px solid var(--secondary-text-color) !important;
   color: var(--secondary-text-color);

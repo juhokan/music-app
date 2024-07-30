@@ -4,6 +4,7 @@ import { AppRoute } from "../../routes"
 import { SearchContext, SpotifyContext, UserContext } from "../../context"
 import { useLocation, useNavigate } from 'react-router-dom'
 import search from '../../assets/search.svg'
+import { Button } from 'primereact/button'
 import { IoPersonSharp } from "react-icons/io5"
 import { getMe } from "../../services/spotifyService"
 import { SpotifyUserData } from "../../types"
@@ -104,9 +105,7 @@ const Menubar: React.FC = () => {
           </a> 
         ) 
       ) : (
-        <div onClick={handleNavigate}>
-          <h3>Log In</h3>
-        </div>
+        <Button className='mx-2' label='Log in' onClick={handleNavigate}/>
       )
     )
   }
