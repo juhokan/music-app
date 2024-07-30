@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react"
 import { AppRoute } from "../../routes"
 import { SearchContext, SpotifyContext, UserContext } from "../../context"
@@ -8,14 +9,12 @@ import { getMe } from "../../services/spotifyService"
 import { SpotifyUserData } from "../../types"
 
 
-
 const Menubar: React.FC = () => {
-
   const { user } = React.useContext(UserContext)
   const { tokens } = React.useContext(SpotifyContext) 
   const { setInput } = React.useContext(SearchContext)
   const [spotiyUser, setSpotiyUser] = React.useState<SpotifyUserData | null>(null)
-  const [isMobile, setMobile] = React.useState(false)
+  const [isMobile, setMobile] = React.useState<boolean>(false)
   const { pathname } = useLocation()
   const navigate = useNavigate()
 
@@ -25,12 +24,9 @@ const Menubar: React.FC = () => {
     setMobile(window.innerWidth <= MAX_WIDTH)
   }
   
-
   useEffect(() => {
-
     isSearchActive()
     window.addEventListener('resize', isSearchActive)
-
     return () => {
       window.removeEventListener('resize', isSearchActive)
     }
@@ -47,7 +43,6 @@ const Menubar: React.FC = () => {
       setSpotiyUser(u)
     }
   }
-
 
   const headerImage = () => {
     return (
@@ -99,7 +94,7 @@ const Menubar: React.FC = () => {
       user ? (
         (spotiyUser ? 
           <a className='menubar-profile-link' href={AppRoute.Profile}>
-            <img className='menubar-profile-image' src={spotiyUser.images[0].url} alt='profile image' />
+            <img className='menubar-profile-image' src={spotiyUser.images[0]?.url} alt='profile image' />
           </a> 
           :
           <a className='menubar-profile-link' href={AppRoute.Profile}>

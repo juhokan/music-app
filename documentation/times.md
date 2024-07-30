@@ -35,5 +35,8 @@
 | 17.7.      | 7             | Deploy workflow and more debugging |
 | 18.7.      | 11             | Build and dev containerization |
 | 20.7.      | 6             | SEO and create better rating system |
+| 21.7.      | 2             | Create profile page and user statistics |
+| 22.7.      | 5             | Profile page styles, filtering and sorting reviews, reviewed albums page |
+| 29.7.      | 2             | Review page refactoring |
 
-### Total: 78h
+### Total: 87h

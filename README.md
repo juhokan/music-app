@@ -17,8 +17,8 @@ This project builds upon a previous project located in the `music-review-app` re
 | Project    | Total (hours) |
 |------------|----------------|
 | Previous project (music-review-app) | 80             |
-| Current Project (music-app)  | 78              |
-| Total           | 158             |
+| Current Project (music-app)  | 87              |
+| Total           | 167             |
 
 ## Client Task List
 - [x] Set up project structure
@@ -36,10 +36,10 @@ This project builds upon a previous project located in the `music-review-app` re
 - [x] Build and development containerization
 - [x] Add metadata
 - [x] Change review score
-- [ ] Implement user page
-- [ ] Fetch users Spotify-albums
+- [x] Implement user page
+- [x] Filter reviews and check statistics
+- [x] Fetch users Spotify-albums
 - [ ] Fetch users up-next albums
-- [ ] Filter reviews and check statistics
 
 ## Server Task List
 - [x] Set up project structure

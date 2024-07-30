@@ -81,12 +81,12 @@ const ProfilePage: React.FC = () => {
           </div>
           {usersAlbums && <ProfileStats albums={usersAlbums}/>}
         </div>
-        <AlbumsCarousel albums={usersAlbums} header='Recents' route={AppRoute.Search} />
+        <AlbumsCarousel albums={usersAlbums} header='Ratings' route={AppRoute.UserRatings} />
         {tokens && 
         (
           savedAlbums 
             ? 
-            (<AlbumsCarousel albums={savedAlbums} header='Saved Albums' route={AppRoute.Search} />) 
+            (<AlbumsCarousel albums={savedAlbums} header='Saved Albums' route={null} />) 
             : 
             ( <div>
               <div className='header-link-container'>

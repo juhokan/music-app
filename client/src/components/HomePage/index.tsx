@@ -9,7 +9,7 @@ import { getNewReleases } from '../../services/spotifyService'
 import { AlbumData } from '../../types'
 import { transformSpotifyAlbum } from '../../utils/transformer'
 
-const LandingPage: React.FC = () => {
+const HomePage: React.FC = () => {
   const { albums } = React.useContext(AlbumsContext)
   const { tokens } = React.useContext(SpotifyContext)
   const [newReleases, setNewReleases] = React.useState<SpotifyAlbumData[] | null>(null)
@@ -44,13 +44,13 @@ const LandingPage: React.FC = () => {
     <>
       {newest 
         ?
-        (<AlbumsCarousel albums={newest} header='Recents' route={AppRoute.Search}/>)
+        (<AlbumsCarousel albums={newest} header='Recents' route={AppRoute.Recent}/>)
         :
         (<Skeleton height='400px' width='100%' className='m-2'></Skeleton>)}
       {tokens && (
         newReleases
           ? 
-          (<AlbumsCarousel albums={transformed} header='New Releases' route={AppRoute.Search}/>) 
+          (<AlbumsCarousel albums={transformed} header='New Releases' route={AppRoute.NewReleases}/>) 
           : 
           (<div>
             <div className='header-link-container'>
@@ -64,4 +64,4 @@ const LandingPage: React.FC = () => {
   )
 }
 
-export default LandingPage
+export default HomePage
