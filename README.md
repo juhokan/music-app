@@ -17,8 +17,8 @@ This project builds upon a previous project located in the `music-review-app` re
 | Project    | Total (hours) |
 |------------|----------------|
 | Previous project (music-review-app) | 80             |
-| Current Project (music-app)  | 87              |
-| Total           | 167             |
+| Current Project (music-app)  | 92              |
+| Total           | 172             |
 
 ## Client Task List
 - [x] Set up project structure
@@ -39,6 +39,7 @@ This project builds upon a previous project located in the `music-review-app` re
 - [x] Implement user page
 - [x] Filter reviews and check statistics
 - [x] Fetch users Spotify-albums
+- [x] Add favourites and show users favourites
 - [ ] Fetch users up-next albums
 
 ## Server Task List

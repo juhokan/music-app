@@ -59,7 +59,8 @@
 .rating-bar-data-header {
   display: flex;
   margin: 0;
-  padding: 8px;
+  padding-inline: 8px;
+  padding-block: 16px;
 }
 
 .rating-bar-container {

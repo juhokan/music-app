@@ -38,5 +38,8 @@
 | 21.7.      | 2             | Create profile page and user statistics |
 | 22.7.      | 5             | Profile page styles, filtering and sorting reviews, reviewed albums page |
 | 29.7.      | 2             | Review page refactoring |
+| 30.7.      | 1             | Client and server README |
+| 30.7.      | 2             | New Releases page, album grid responsivity fix and Login form styling |
+| 30.7.      | 2             | Add favourites and show users favourites on profile and favourites page |
 
-### Total: 87h
+### Total: 92h
