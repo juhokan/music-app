@@ -64,9 +64,9 @@ const AlbumsCarousel: React.FC<AlbumCarouselProps> = ({ albums, header, route })
             draggable={true}
             responsive={responsive}
           >
-            {albums.map(a => (
+            {albums.map((a, i) => (
               <Album 
-                key={a.album_id} 
+                key={`${a.album_id}${i}`} 
                 name={a.title} 
                 id={a.album_id} 
                 artistName={a.artist} 

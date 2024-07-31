@@ -9,14 +9,14 @@ const RecentsPage = () => {
 
   useEffect(() => {
     if (albums) {
-      const a = albums.reverse()
+      const a = [...albums].reverse()
       setSortedAlbums(a)
     }
   }, [albums])
 
   return (
     <>
-      {albums && <SortedAlbumGrid albums={sortedAlbums}/>}
+      {sortedAlbums && <SortedAlbumGrid albums={sortedAlbums}/>}
     </>
   )
 }

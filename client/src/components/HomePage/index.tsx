@@ -16,6 +16,7 @@ const HomePage: React.FC = () => {
   const [transformed, setTransformed] = React.useState<AlbumData[] | null>(null)
 
   const newest = albums ? [...albums].reverse() : null
+  
 
   useEffect(() => {
     const fetchNewReleases = async () => {

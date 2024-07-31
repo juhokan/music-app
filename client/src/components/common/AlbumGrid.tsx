@@ -9,8 +9,8 @@ interface AlbumGridProps {
 const AlbumGrid: React.FC<AlbumGridProps> = ({ albums }) => {
   return (
     <div className='album-grid-container'>
-      {albums && albums.map(a => (
-        <div className='album-item' key={a.album_id}>
+      {albums && albums.map((a, i) => (
+        <div className='album-item' key={`${a.album_id}${i}`}>
           <Album 
             id={a.album_id}
             image={a.image_url}
