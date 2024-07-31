@@ -1,6 +1,6 @@
 # Music App Client
 
-A brief description of what this project does and who it's for.
+This is the MusicApp client, designed to interact with the server and provide a rich user experience for music reviews. It includes a range of features for browsing, submitting, and managing music reviews, as well as exploring albums provided by the Spotify WebAPI.
 
 ## Getting Started
 
