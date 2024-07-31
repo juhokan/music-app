@@ -82,3 +82,9 @@
   margin: 0px;
   padding-inline: 8px;
 }
+
+.logout-container {
+  margin:  0 auto;
+  display: flex;
+  justify-content: center;
+}

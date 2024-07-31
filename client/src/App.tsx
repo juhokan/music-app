@@ -49,9 +49,9 @@ const App: React.FC = () => {
   }
 
   const setAndSaveUser = (u: UserData | null) => {
+    setUser(u)
     if (u) {
       window.localStorage.setItem(USER_KEY, JSON.stringify(u))
-      setUser(u)
     }
     else {
       window.localStorage.removeItem(USER_KEY)
@@ -64,6 +64,9 @@ const App: React.FC = () => {
       const t = await refreshSpotifyToken(s.refresh)
       window.localStorage.setItem(SPOTIFY_TOKEN, JSON.stringify(t))
       setTokens(t)
+    }
+    else {
+      setTokens(s)
     }
   }
 
