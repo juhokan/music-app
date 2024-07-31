@@ -40,7 +40,6 @@ This project builds upon a previous project located in the `music-review-app` re
 - [x] Filter reviews and check statistics
 - [x] Fetch users Spotify-albums
 - [x] Add favourites and show users favourites
-- [ ] Fetch users up-next albums
 
 ## Server Task List
 - [x] Set up project structure
@@ -52,4 +51,3 @@ This project builds upon a previous project located in the `music-review-app` re
 - [x] Parse user and album data
 - [x] Create tests for users and albums
 - [x] CI/CD Pipeline for tests and deployment
-- [ ] Create Up-Next albums
