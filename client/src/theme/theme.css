@@ -1,4 +1,8 @@
-.p-button, .p-dropdown {
+:root {
+  --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.p-button, .p-dropdown, .p-inputtext {
   background: none !important;
   border: 1px solid var(--secondary-text-color) !important;
   color: var(--secondary-text-color);
@@ -10,6 +14,10 @@
   &:focus-visible {
     border-color: none !important;
   }
+}
+
+.p-dropdown-label.p-inputtext {
+  border: none !important;
 }
 
 .p-inputwrapper-focus {

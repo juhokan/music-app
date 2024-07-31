@@ -13,6 +13,7 @@ import LoginForm from './LoginPage/LoginForm'
 import RatingPage from './ProfilePage/RatingPage'
 import RecentsPage from './RecentsPage'
 import NewReleasesPage from './NewReleasesPage'
+import FavouritePage from './ProfilePage/FavouritePage'
 
 const AppContainer: React.FC = () => {
   const { input } = React.useContext(SearchContext)
@@ -43,6 +44,9 @@ const AppContainer: React.FC = () => {
           </Route>
           <Route path={AppRoute.UserRatings}>
             <Route index element={<RatingPage />} />
+          </Route>
+          <Route path={AppRoute.UserFavourites}>
+            <Route index element={<FavouritePage />} />
           </Route>
           <Route path={AppRoute.NewReleases}>
             <Route index element={<NewReleasesPage />} />

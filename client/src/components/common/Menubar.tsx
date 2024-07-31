@@ -4,6 +4,8 @@ import { AppRoute } from "../../routes"
 import { SearchContext, SpotifyContext, UserContext } from "../../context"
 import { useLocation, useNavigate } from 'react-router-dom'
 import search from '../../assets/search.svg'
+import logo from '../../assets/musicapplogo.png'
+import { Button } from 'primereact/button'
 import { IoPersonSharp } from "react-icons/io5"
 import { getMe } from "../../services/spotifyService"
 import { SpotifyUserData } from "../../types"
@@ -46,8 +48,9 @@ const Menubar: React.FC = () => {
 
   const headerImage = () => {
     return (
-      <a href={AppRoute.Home} className='menubar-image'>
-        <h4>music review app</h4>
+      <a href={AppRoute.Home} className='menubar-image-container'>
+        <img className='menubar-image' src={logo} alt='MusicApp Logo' />
+        <h4 className='menubar-type'>MusicApp</h4>
       </a>
     )
   }
@@ -104,9 +107,7 @@ const Menubar: React.FC = () => {
           </a> 
         ) 
       ) : (
-        <div onClick={handleNavigate}>
-          <h3>Log In</h3>
-        </div>
+        <Button className='mx-2' label='Log in' onClick={handleNavigate}/>
       )
     )
   }

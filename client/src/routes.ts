@@ -7,5 +7,6 @@ export enum AppRoute {
   Profile = '/profile',
   Login = '/login',
   UserRatings = '/profile/ratings',
+  UserFavourites = '/profile/favourites',
   UserSaved = '/profile/saved'
 }

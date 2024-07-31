@@ -13,7 +13,7 @@ const ProfileStats: React.FC<ProfileStatsProps> = ({ albums }) => {
   const [ratingDict, setRatingDict] = React.useState<{ [key: number]: number } | null>(null)
   const [largestValue, setLargestValue] = React.useState<number>(0)
   const allRatings = albums.length
-  const MAX_HEIGHT = 100
+  const MAX_HEIGHT = 95
 
   useEffect(() => {
     albumRatingStats()
@@ -49,8 +49,7 @@ const ProfileStats: React.FC<ProfileStatsProps> = ({ albums }) => {
   }
 
   const ratingBar = (rating: number, count: number) => {
-    const multiplicationFactor = allRatings / (largestValue^2 / count)
-    const height = (count / allRatings) * MAX_HEIGHT * multiplicationFactor
+    const height = (count / largestValue) * MAX_HEIGHT
 
     return (
       <div className='rating-bar-container'

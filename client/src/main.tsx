@@ -8,14 +8,15 @@ import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css'
 import 'primeflex/primeflex.css'
 
 const value = {
-  ripple: false
+  ripple: false,
+  font: 'helvetica'
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <HelmetProvider>
       <Helmet>
-        <title>Music App</title>
+        <title>MusicApp</title>
         <meta name='description' content='Review your music'/>
       </Helmet>
       <PrimeReactProvider value={value}>
