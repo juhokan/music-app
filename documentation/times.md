@@ -41,5 +41,7 @@
 | 30.7.      | 1             | Client and server README |
 | 30.7.      | 2             | New Releases page, album grid responsivity fix and Login form styling |
 | 30.7.      | 2             | Add favourites and show users favourites on profile and favourites page |
+| 31.7.      | 4             | Logo, favicon and other graphic design |
+| 31.7.      | 2             | Login form styling, small bug fixes |
 
-### Total: 92h
+### Total: 98h
