@@ -43,5 +43,6 @@
 | 30.7.      | 2             | Add favourites and show users favourites on profile and favourites page |
 | 31.7.      | 4             | Logo, favicon and other graphic design |
 | 31.7.      | 2             | Login form styling, small bug fixes |
+| 31.7.      | 2             | Final bug fixes and configuring test user |
 
-### Total: 98h
+### Total: 100h

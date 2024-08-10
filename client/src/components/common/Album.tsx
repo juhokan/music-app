@@ -23,7 +23,7 @@ const Album: React.FC<AlbumProps> = ({ id, image, name, artistName, rating }) =>
         <div className='album-card-rating'>
           <p>{rating}</p>
         </div>}
-        <img src={image} alt='album'className='album-card-cover'/>
+        <img src={image} alt='album'className='album-card-cover' loading='lazy'/>
       </div>
       <div className='album-card-title-container'>
         <h2 className='album-card-title'>{name}</h2>

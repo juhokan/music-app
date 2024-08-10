@@ -26,8 +26,8 @@ This project builds upon a previous project located in the `music-review-app` re
 | Project    | Total (hours) |
 |------------|----------------|
 | Previous project (music-review-app) | 80             |
-| Current Project (music-app)  | 98              |
-| Total           | 178             |
+| Current Project (music-app)  | 100              |
+| Total           | 180             |
 
 ## Client Task List
 - [x] Set up project structure

@@ -69,8 +69,8 @@ const Menubar: React.FC = () => {
       <div className='menubar-link-container'>
         {isMobile ? (
           pathname !== AppRoute.Search && (
-            <a className='search-mobile' href={AppRoute.Search} >
-              <img src={search} style={{height: '16px', width: '16px'}} />
+            <a className='search-mobile' href={AppRoute.Search} aria-label='search link'>
+              <img src={search} style={{height: '16px', width: '16px'}} alt='search icon' />
             </a>
           )
         ) : (
